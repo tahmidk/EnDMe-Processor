@@ -1,0 +1,11 @@
+save loop
+store $dst
+
+#Comment
+loop:
+add $r3
+sub $r4
+btr
+
+save #2
+store $r2
