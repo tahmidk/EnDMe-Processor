@@ -1,54 +1,80 @@
-// Create Date:     2017.05.05
-// Latest rev date: 2017.10.26
-// Created by:      J Eldon
-// Design Name:     CSE141L
-// Module Name:     ALU (Arithmetic Logical Unit)
+/**---------------------------------------------------------------------
+ *	Module:		Arithmetic Logic Unit
+ *	Class:		CSE 141L - SP18
+ * Authors: 	Tahmid Khan
+ *					Shengyuan Lin
+ *----------------------------------------------------------------------
+ *	[Inputs]
+ * 	reg_in - the data wire from the register file (8-bits)
+ * 	acc_in - the output wire from the accumulator (8-bits)
+ *		op_ctrl - the control wire dictating what op to execute (3-bits)
+ *
+ * [Outputs]
+ * 	rslt_out - the result of the ALU operation (8-bits)
+ *		zero_out - the zero control signal for branching (1-bit)
+ * 
+ ---------------------------------------------------------------------*/
 
-
-//This is the ALU module of the core, op_code_e is defined in definitions.v file
-// Includes new enum op_mnemonic to make instructions appear literally on waveform.
 import definitions::*;
 
 module alu (
-	input  [7:0]       rs_i ,	 	// operand s
-	input  [7:0]       rt_i	,	 	// operand t
-	input              ov_i ,	 	// shift-in
-	input  [8:0]       op_i	,	 	// instruction / opcode
-	output logic [7:0] result_o,	// rslt
-	output logic       ov_o
-	);
+	input [7:0] reg_in,
+	input [7:0] acc_in,
+	input [8:0] op_ctrl,
+	output logic [7:0] rslt_out,
+	output zero_out
+);
 
-op_code op3; 	                  	// type is op_code, as defined
-assign op3 = op_code'(op_i[8:6]);   // map 3 MSBs of op_i to op3 (ALU), cast to enum
+	// Convert op_ctrl signal to readable enumeration (e.g. 000 --> ADD)
+	ALU_Ops op;
+	assign op = ALU_Ops'(op_ctrl);
 
-always_comb								  // no registers, no clocks
-	begin
-		result_o   = 'd0;                     // default or NOP result
-		ov_o       = 'd0;
-	case (op3)
-		// logical shift left
-		SLL: 
-			begin							  
-				ov_o     = rs_i[7];			  // generate shift-out bit to left
-				result_o = {rs_i[6:0],ov_i};	  // accept previous shift-out from right
-			end
-		// logical right shift
-		SRL: 
-			begin							  
-				ov_o     = rs_i[0];
-				result_o = {ov_i,rs_i[7:1]};
-			end
-		LSW: 
-			begin							// store word or load word
-				result_o = rs_i;		// pass rs_i to output	(a+0)
-				ov_o = ov_i;
-			end
-		CLR: result_o = 8'h00;				  // clear (output = 0)
-		EMK: result_o = 8'b01111100 & rs_i;	  // exponent mask
-		INC: {ov_o, result_o} = rs_i + 9'b1;  // out = A+1
-		ADD: {ov_o, result_o} = rs_i + rt_i + ov_i;
-		SUB: {ov_o, result_o} = rs_i - rt_i + ov_i;
-	endcase
-end
+	// Main combinational logic
+	always_comb
+		begin
+			// Initialize defaults
+			rslt_out = 'd0;
+			zero_out = 'd0;
+		
+			// Find which operation to execute using switch-case block
+			case(op)
+				// Addition
+				ADD: 
+					begin
+						sum = reg_in + acc_in;
+						rslt_out = sum[7:0];
+					end
+				// Subtraction
+				SUB: 
+					begin
+						diff = reg_in - acc_in;
+						if(diff == 0) begin
+							zero_out = 1
+						end
+						else begin
+							zero_out = 0
+						end
+					end
+				// Logical shift left
+				SLL: 
+					rslt_out = acc_in << reg_in
+				// Logical right shift
+				SRL: 
+					rslt_out = acc_in >> reg_in
+				// Compare equality
+				EQU:
+					rslt_out = (acc_in == reg_in)
+				// Compare greater than
+				GTR:
+					rslt_out = (reg_in > acc_in)
+				// Bitwise AND
+				AND:
+					rslt_out = acc_in & reg_in
+				// Bitwise XOR
+				XOR:
+					rslt_out = acc_in ^ reg_in
+		endcase
+	end
 
+	
 endmodule 
