@@ -20,7 +20,7 @@ import definitions::*;
 module alu (
 	input [7:0] reg_in,
 	input [7:0] acc_in,
-	input [8:0] op_ctrl,
+	input [2:0] op_ctrl,
 	output logic [7:0] rslt_out,
 	output zero_out
 );
@@ -73,8 +73,8 @@ module alu (
 				// Bitwise XOR
 				XOR:
 					rslt_out = acc_in ^ reg_in
-		endcase
-	end
+			endcase
+		end
 
 	
 endmodule 

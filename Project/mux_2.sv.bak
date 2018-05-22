@@ -1,0 +1,31 @@
+/**---------------------------------------------------------------------
+ *	Module:		2:1 MUX
+ *	Class:		CSE 141L - SP18
+ * Authors: 	Tahmid Khan
+ *					Shengyuan Lin
+ *----------------------------------------------------------------------
+ *	[Inputs]
+ * 	CLK - the clock (1-bit)
+ *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
+ *
+ * [Outputs]
+ * 	instr_addr - the address of the next instruction (16-bits)
+ * 
+ ---------------------------------------------------------------------*/
+
+module  mux_2(
+	input din_0,
+	input din_1,
+	input sel,
+	output reg mux_out
+);
+
+	always_comb
+		begin
+			case(sel)
+				1b'0: mux_out = din_0;
+				1b'1: mux_out = din_1;
+			endcase
+		end
+		
+endmodule

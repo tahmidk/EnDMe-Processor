@@ -1,0 +1,20 @@
+/**---------------------------------------------------------------------
+ *	Module:		Data Memory
+ *	Class:		CSE 141L - SP18
+ * Authors: 	Tahmid Khan
+ *					Shengyuan Lin
+ *----------------------------------------------------------------------
+ *	[Inputs]
+ * 	CLK - the clock (1-bit)
+ *		addr_in - the address to look up in memory (8-bits)
+ *		data_in - the data to write to addr (8-bits)
+ *		writemem_ctrl - the control signal dictating whether data_in 
+ *			should be committed to memory at addr or not (1-bit)
+ *
+ * [Outputs]
+ * 	data_out - the data at addr (8-bits)
+ * 
+ ---------------------------------------------------------------------*/
+
+module instr_fetch(
+);

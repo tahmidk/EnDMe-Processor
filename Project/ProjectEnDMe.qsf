@@ -53,3 +53,10 @@ set_global_assignment -name SYSTEMVERILOG_FILE TopLevel.sv
 set_global_assignment -name SYSTEMVERILOG_FILE definitions.sv
 set_global_assignment -name SYSTEMVERILOG_FILE reg_file.sv
 set_global_assignment -name SYSTEMVERILOG_FILE instr_rom.sv
+set_global_assignment -name SYSTEMVERILOG_FILE pc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE incrementor.sv
+set_global_assignment -name SYSTEMVERILOG_FILE data_mem.sv
+set_global_assignment -name SYSTEMVERILOG_FILE instr_fetch.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mux_2.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mux_4.sv

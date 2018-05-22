@@ -31,8 +31,9 @@ module reg_file(
 	logic [7:0] core[16];
 	
 	// Register file writes on posedge CLK iff write_ctrl = 1
-	always_ff @(posedge clk) if(write_ctrl)		
-		core[reg_in] <= data_in;
+	always_ff @(posedge clk) 
+		if(write_ctrl)		
+			core[reg_in] <= data_in;
 
 	// Do reads automatically rather than sequentially
 	always_comb data_out = core[reg_in];
