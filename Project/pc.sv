@@ -24,9 +24,9 @@ module pc (
 	/* On each posedge clock, or whenever the reset control is triggered
 	 *	update the program counter or reset it to 0
 	 */
-	always @(posedge CLK, posedge reset_ctrl)
+	always @(posedge CLK)
 		begin
-			if (reset_ctrl) 
+			if(reset_ctrl) 
 				pc_out <= 0'h0000;
 			else 
 				pc_out <= pcnext_in;

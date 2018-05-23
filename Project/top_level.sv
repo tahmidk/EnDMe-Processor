@@ -22,10 +22,24 @@
  );
  
 	// Initialize instruction fetch
+	instr_fetch IF(
+	
+	);
+	
+	// Initialize instruction ROM
+	instr_rom IROM(
+	
+	);
 	
 	// Initialize ALU
+	alu ALU(
+	
+	);
 	
 	// Initialize accumulator
+	accumulator ACC(
+	
+	);
 	
 	// Initialize control unit
 	

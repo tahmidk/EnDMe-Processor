@@ -60,3 +60,5 @@ set_global_assignment -name SYSTEMVERILOG_FILE instr_fetch.sv
 set_global_assignment -name SYSTEMVERILOG_FILE top_level.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux_2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux_4.sv
+set_global_assignment -name SYSTEMVERILOG_FILE accumulator.sv
+set_global_assignment -name SYSTEMVERILOG_FILE controller.sv
