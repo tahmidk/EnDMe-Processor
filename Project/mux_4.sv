@@ -19,6 +19,8 @@
 module  mux_4 #(parameter data_width=16)(
 	input [data_width-1:0] din_0,
 	input [data_width-1:0] din_1,
+	input [data_width-1:0] din_2,
+	input [data_width-1:0] din_3,
 	input [1:0] sel,
 	output [data_width-1:0] mux_out
 );
@@ -26,10 +28,10 @@ module  mux_4 #(parameter data_width=16)(
 	always_comb
 		begin
 			case(sel)
-				2b'00: mux_out = din_0;
-				2b'01: mux_out = din_1;
-				2b'10: mux_out = din_2;
-				2b'11: mux_out = din_3;
+				2'b00: mux_out = din_0;
+				2'b01: mux_out = din_1;
+				2'b10: mux_out = din_2;
+				2'b11: mux_out = din_3;
 			endcase
 		end
 		

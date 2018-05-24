@@ -18,7 +18,7 @@ module pc (
 	input CLK,
 	input reset_ctrl,
 	input [15:0] pcnext_in,
-	output reg [15:0] pc_out,
+	output reg [15:0] pc_out
 );
 
 	/* On each posedge clock, or whenever the reset control is triggered
@@ -27,7 +27,7 @@ module pc (
 	always @(posedge CLK)
 		begin
 			if(reset_ctrl) 
-				pc_out <= 0'h0000;
+				pc_out <= 4'h0000;
 			else 
 				pc_out <= pcnext_in;
 		end

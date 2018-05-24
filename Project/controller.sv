@@ -13,8 +13,10 @@
  *		regwrite_ctrl - the register write control signal generated (1-bit)
  *		aluop_ctrl - the alu operation control signal generated (3-bits)
  *		memwrite_ctrl - the memory write control signal generated (1-bit)
- *		acc_ctrl - the accumulator data-in control signal generated (2-bits)
+ *		accdata_ctrl - the accumulator data-in control signal generated (2-bits)
+ *		accwrite_ctrl - accumulator write control signal
  ---------------------------------------------------------------------*/
+import definitions::*;
 
 module controller(
 	input TYP,
@@ -23,24 +25,79 @@ module controller(
 	output regwrite_ctrl,
 	output [2:0] aluop_ctrl,
 	output memwrite_ctrl,
-	output [1:0] acc_ctrl
+	output [1:0] accdata_ctrl,
+	output accwrite_ctrl
 );
+
+	// Enumerate op code into an instruction 
+	Instr_O instr;
+	assign instr = Instr_O'(OP);
 
 	always_comb
 		begin
+			// Temporary defaults
+			br_ctrl <= 1'b0;
+			regwrite_ctrl <= 1'b0;
+			aluop_ctrl <= 3'b000;
+			memwrite_ctrl <= 1'b0;
+			accdata_ctrl <= 2'b00;
+			accwrite_ctrl <= 1'b0;
+		
 			// Instruction is M-type save
 			if(TYP == 1)
 				begin
-					br_ctrl = 1'b0
-					regwrite_ctrl = 1'b0
-					aluop_ctrl = 3'b000
-					memwrite_ctrl = 1'b0
-					acc_ctrl = 2b'0
+					br_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= 3'b000;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b00;
+					accwrite_ctrl <= 1'b1;
 				end
 			// Instruction is O-type operation
 			else
-				case(OP)
-					// All possible op codes
+				case(instr)
+					STORE: begin
+						
+					end
+					LB: begin
+						
+					end
+					SB: begin
+					
+					end
+					PUT: begin
+					
+					end
+					BTR:begin
+					
+					end
+					JMP: begin
+					
+					end
+					ADD: begin
+					
+					end
+					SUB: begin
+					
+					end
+					AND: begin
+					
+					end
+					XOR: begin
+					
+					end
+					SFL: begin
+					
+					end
+					SFR: begin
+					
+					end
+					CMP: begin
+					
+					end
+					GTR: begin
+					
+					end
 				endcase
 		end
 

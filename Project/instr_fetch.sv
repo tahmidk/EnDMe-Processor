@@ -22,7 +22,7 @@ module instr_fetch(
 	input [7:0] dst_in,
 	input reset_ctrl,
 	input br_ctrl,
-	input jmp_ctrl
+	input jmp_ctrl,
 	input zero_ctrl,
 	output [15:0] instr_addr
 );
@@ -33,10 +33,10 @@ module instr_fetch(
 	wire br_sel;			// Branch selector
 
 	// The branch address is calculated combinatorily
-	assign pc_br = {pc_inc[15:8], dst_in}
+	assign pc_br = {pc_inc[15:8], dst_in};
 	
 	// Initialize and wire the program counter module
-	pc(
+	pc PC(
 		.CLK(CLK), 
 		.reset_ctrl(reset_ctrl),
 		.pcnext_in(pc_next),
@@ -44,13 +44,13 @@ module instr_fetch(
 	);
 		
 	// Initialize and wire the incrementor
-	incrementor(
+	incrementor INC(
 		.a(instr_addr),
 		.a_inc(pc_inc),
 	);
 	
 	// Next PC source selector MUX
-	assign br_sel = (branch_ctrl & zero_ctrl) | jmp_ctrl
+	assign br_sel = (br_ctrl & zero_ctrl) | jmp_ctrl;
 	mux_2 mux_br(
 		.din_0(pc_inc),
 		.din_1(pc_br),

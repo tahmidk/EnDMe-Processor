@@ -24,8 +24,8 @@ module  mux_2 #(parameter data_width=16)(
 	always_comb
 		begin
 			case(sel)
-				1b'0: mux_out = din_0;
-				1b'1: mux_out = din_1;
+				1'b0: mux_out = din_0;
+				1'b1: mux_out = din_1;
 			endcase
 		end
 		

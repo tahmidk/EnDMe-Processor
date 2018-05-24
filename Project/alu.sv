@@ -39,40 +39,35 @@ module alu (
 			// Find which operation to execute using switch-case block
 			case(op)
 				// Addition
-				ADD: 
-					begin
-						sum = reg_in + acc_in;
-						rslt_out = sum[7:0];
-					end
+				Add: 
+					rslt_out = reg_in + acc_in;
 				// Subtraction
-				SUB: 
+				Sub: 
 					begin
-						diff = reg_in - acc_in;
-						if(diff == 0) begin
-							zero_out = 1
-						end
-						else begin
-							zero_out = 0
-						end
+						rslt_out = reg_in - acc_in;
+						if(rslt_out == 0)
+							zero_out = 1;
+						else
+							zero_out = 0;
 					end
 				// Logical shift left
-				SLL: 
-					rslt_out = acc_in << reg_in
+				Sll: 
+					rslt_out = acc_in << reg_in;
 				// Logical right shift
-				SRL: 
-					rslt_out = acc_in >> reg_in
+				Srl: 
+					rslt_out = acc_in >> reg_in;
 				// Compare equality
-				EQU:
-					rslt_out = (acc_in == reg_in)
+				Equ:
+					rslt_out = (acc_in == reg_in);
 				// Compare greater than
-				GTR:
-					rslt_out = (reg_in > acc_in)
+				Gtr:
+					rslt_out = (reg_in > acc_in);
 				// Bitwise AND
-				AND:
-					rslt_out = acc_in & reg_in
+				And:
+					rslt_out = acc_in & reg_in;
 				// Bitwise XOR
-				XOR:
-					rslt_out = acc_in ^ reg_in
+				Xor:
+					rslt_out = acc_in ^ reg_in;
 			endcase
 		end
 

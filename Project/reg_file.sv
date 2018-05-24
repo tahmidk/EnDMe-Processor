@@ -31,12 +31,12 @@ module reg_file(
 	logic [7:0] core[16];
 	
 	// Register file writes on posedge CLK iff write_ctrl = 1
-	always_ff @(posedge clk) 
+	always_ff @(posedge CLK) 
 		if(write_ctrl)		
 			core[reg_in] <= data_in;
 
 	// Do reads automatically rather than sequentially
 	always_comb data_out = core[reg_in];
-	always_comb dst_out = core[15]
+	always_comb dst_out = core[15];
 
 endmodule

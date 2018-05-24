@@ -122,7 +122,7 @@ else:
 				if imm > 255:
 					print("Warning, an immediate reaches >255!")
 
-				instr_mc = M_TYPE + '_' + '{0:08b}'.format(imm % 256)
+				instr_mc = M_TYPE + '{0:08b}'.format(imm % 256)
 				machine_code_out.write(instr_mc + '\n')
 			# Argument is a label
 			else:
@@ -132,7 +132,7 @@ else:
 					sys.exit()
 
 				label_ref = labels[label]
-				instr_mc = M_TYPE + '_' + '{0:08b}'.format(label_ref % 256)
+				instr_mc = M_TYPE + '{0:08b}'.format(label_ref % 256)
 				machine_code_out.write(instr_mc + '\n')
 
 		# Detect O-type instruction
@@ -150,8 +150,8 @@ else:
 				reg = reg_code[register]
 
 			# O-Type = Typ[9:8] + Opcode[7:4] + Regcode[3:0]
-			instr_mc = O_TYPE + '_' + '{0:04b}'.format(op) \
-				+ '_' + '{0:04b}'.format(reg)
+			instr_mc = O_TYPE + '{0:04b}'.format(op) + \
+				'{0:04b}'.format(reg)
 			machine_code_out.write(instr_mc + '\n')
 
 	# Close files

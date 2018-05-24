@@ -31,18 +31,23 @@ module data_mem (
 	//initial 
 	//	$readmem_ctrlh("dataram_init.list", mem_file);
 
-	// Read data from memory immediately
-	assign data_out = mem_file[addr_in];
-	// Diagnostic print statement (TODO: remove after debug)
-	$display("Memory read M[%d] = %d", addr_in, data_out);
+	always @*
+		begin
+			// Read data from memory immediately
+			data_out = mem_file[addr_in];
+			// Diagnostic print statement (TODO: remove after debug)
+			$display("Memory read M[%d] = %d", addr_in, data_out);
+		end
 
 	// Write data to memory sequentially
-	always_ff @ (posedge CLK)
-		if(writemem_ctrl) 
-			begin
-				mem_file[addr_in] <= data_in;
-				// Diagnostic print statement (TODO: remove after debug)
-				$display("Memory write M[%d] = %d", addr_in, data_in);
-			end
+	always_ff @(posedge CLK) 
+		begin
+			if(writemem_ctrl) 
+				begin
+					mem_file[addr_in] <= data_in;
+					// Diagnostic print statement (TODO: remove after debug)
+					$display("Memory write M[%d] = %d", addr_in, data_in);
+				end
+		end
 
 endmodule

@@ -1,0 +1,5 @@
+Info (10281): Verilog HDL Declaration information at definitions.sv(17): object "Add" differs only in case from object "ADD" in the same scope File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv Line: 17
+Info (10281): Verilog HDL Declaration information at definitions.sv(18): object "Sub" differs only in case from object "SUB" in the same scope File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv Line: 18
+Info (10281): Verilog HDL Declaration information at definitions.sv(23): object "And" differs only in case from object "AND" in the same scope File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv Line: 23
+Info (10281): Verilog HDL Declaration information at definitions.sv(25): object "Xor" differs only in case from object "XOR" in the same scope File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv Line: 25
+Info (10281): Verilog HDL Declaration information at definitions.sv(22): object "Gtr" differs only in case from object "GTR" in the same scope File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv Line: 22
