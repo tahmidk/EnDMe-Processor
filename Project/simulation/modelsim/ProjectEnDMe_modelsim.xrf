@@ -1,5 +1,4 @@
 vendor_name = ModelSim
-source_file = 1, TopLevel.sv
 source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv
 source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv
 source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv

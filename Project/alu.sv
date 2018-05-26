@@ -21,8 +21,7 @@ module alu (
 	input [7:0] reg_in,
 	input [7:0] acc_in,
 	input [2:0] op_ctrl,
-	output logic [7:0] rslt_out,
-	output zero_out
+	output logic [7:0] rslt_out
 );
 
 	// Convert op_ctrl signal to readable enumeration (e.g. 000 --> ADD)
@@ -34,7 +33,6 @@ module alu (
 		begin
 			// Initialize defaults
 			rslt_out = 'd0;
-			zero_out = 'd0;
 		
 			// Find which operation to execute using switch-case block
 			case(op)
@@ -43,13 +41,7 @@ module alu (
 					rslt_out = reg_in + acc_in;
 				// Subtraction
 				Sub: 
-					begin
-						rslt_out = reg_in - acc_in;
-						if(rslt_out == 0)
-							zero_out = 1;
-						else
-							zero_out = 0;
-					end
+					rslt_out = reg_in - acc_in;
 				// Logical shift left
 				Sll: 
 					rslt_out = acc_in << reg_in;

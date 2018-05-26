@@ -10,7 +10,7 @@
  *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
  *		br_ctrl - the control wire determining control flow (btr) (1-bit)
  *		jmp_ctrl - the control wire determining control flow (jmp) (1-bit)
- *		zero_ctrl - the control wire from the ALU zero line (1-bit)
+ *		accdata_in - the data currently in the accumulator (1-bit)
  *
  * [Outputs]
  * 	instr_addr - the address of the next instruction (16-bits)
@@ -23,7 +23,7 @@ module instr_fetch(
 	input reset_ctrl,
 	input br_ctrl,
 	input jmp_ctrl,
-	input zero_ctrl,
+	input accdata_in,
 	output [15:0] instr_addr
 );
 
@@ -46,11 +46,11 @@ module instr_fetch(
 	// Initialize and wire the incrementor
 	incrementor INC(
 		.a(instr_addr),
-		.a_inc(pc_inc),
+		.a_inc(pc_inc)
 	);
 	
 	// Next PC source selector MUX
-	assign br_sel = (br_ctrl & zero_ctrl) | jmp_ctrl;
+	assign br_sel = (br_ctrl & accdata_in) | jmp_ctrl;
 	mux_2 mux_br(
 		.din_0(pc_inc),
 		.din_1(pc_br),

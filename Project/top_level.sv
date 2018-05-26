@@ -47,7 +47,7 @@
 		.reset_ctrl(RESET),
 		.br_ctrl(ctrl_branch),
 		.jmp_ctrl(ctrl_jump),
-		.zero_ctrl(ctrl_zero),
+		.accdata_in(acc_output),
 		.instr_addr(instr_addr_bus)
 	);
 	
@@ -96,8 +96,7 @@
 		.reg_in(reg_output),
 		.acc_in(acc_output),
 		.op_ctrl(ctrl_alu),
-		.rslt_out(alu_output),
-		.zero_out(ctrl_zero)
+		.rslt_out(alu_output)
 	);
 	
 	// Initialize data memory

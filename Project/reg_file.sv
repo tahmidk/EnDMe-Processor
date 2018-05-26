@@ -36,7 +36,7 @@ module reg_file(
 			core[reg_in] <= data_in;
 
 	// Do reads automatically rather than sequentially
-	always_comb data_out = core[reg_in];
-	always_comb dst_out = core[15];
+	assign data_out = core[reg_in];
+	assign dst_out = core[15];
 
 endmodule

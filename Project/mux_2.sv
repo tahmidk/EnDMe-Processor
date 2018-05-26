@@ -18,7 +18,7 @@ module  mux_2 #(parameter data_width=16)(
 	input [data_width-1:0] din_0,
 	input [data_width-1:0] din_1,
 	input sel,
-	output [data_width-1:0] mux_out
+	output reg [data_width-1:0] mux_out
 );
 
 	always_comb

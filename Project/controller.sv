@@ -21,12 +21,12 @@ import definitions::*;
 module controller(
 	input TYP,
 	input [3:0] OP,
-	output br_ctrl,
-	output regwrite_ctrl,
-	output [2:0] aluop_ctrl,
-	output memwrite_ctrl,
-	output [1:0] accdata_ctrl,
-	output accwrite_ctrl
+	output reg br_ctrl,
+	output reg regwrite_ctrl,
+	output reg [2:0] aluop_ctrl,
+	output reg memwrite_ctrl,
+	output reg [1:0] accdata_ctrl,
+	output reg accwrite_ctrl
 );
 
 	// Enumerate op code into an instruction 

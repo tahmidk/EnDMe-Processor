@@ -24,7 +24,7 @@ module accumulator(
 	input [7:0] data_alu_in,
 	input [1:0] data_ctrl,
 	input accwrite_ctrl,
-	output [7:0] acc_out
+	output reg [7:0] acc_out
 );
 
 	// Accumulator's data
