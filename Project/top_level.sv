@@ -59,7 +59,6 @@
 	
 	// Initialize accumulator
 	accumulator ACC(
-		.CLK(CLK),
 		.data_imm_in(instruction[7:0]),
 		.data_reg_in(reg_output),
 		.data_mem_in(mem_output),

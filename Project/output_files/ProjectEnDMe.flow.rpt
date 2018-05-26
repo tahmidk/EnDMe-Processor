@@ -1,5 +1,5 @@
 Flow report for ProjectEnDMe
-Fri May 25 20:56:18 2018
+Fri May 25 22:22:28 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Fri May 25 20:56:18 2018       ;
+; Flow Status                     ; Successful - Fri May 25 22:22:28 2018       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; ProjectEnDMe                                ;
 ; Top-level Entity Name           ; top_level                                   ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/25/2018 20:55:03 ;
+; Start date & time ; 05/25/2018 22:21:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ProjectEnDMe        ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 268891677930068.152730690316936        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 268891677930068.152731208422976        ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                      ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim (SystemVerilog)               ; <None>        ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation ;
@@ -99,12 +99,12 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:13     ; 1.0                     ; 4806 MB             ; 00:00:28                           ;
-; Fitter                    ; 00:00:38     ; 1.0                     ; 6744 MB             ; 00:01:07                           ;
-; Assembler                 ; 00:00:10     ; 1.0                     ; 4844 MB             ; 00:00:10                           ;
+; Analysis & Synthesis      ; 00:00:12     ; 1.0                     ; 4811 MB             ; 00:00:26                           ;
+; Fitter                    ; 00:00:32     ; 1.0                     ; 6684 MB             ; 00:01:00                           ;
+; Assembler                 ; 00:00:09     ; 1.0                     ; 4845 MB             ; 00:00:09                           ;
 ; TimeQuest Timing Analyzer ; 00:00:06     ; 1.0                     ; 5150 MB             ; 00:00:06                           ;
-; EDA Netlist Writer        ; 00:00:03     ; 1.0                     ; 4745 MB             ; 00:00:02                           ;
-; Total                     ; 00:01:10     ; --                      ; --                  ; 00:01:53                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4745 MB             ; 00:00:02                           ;
+; Total                     ; 00:01:00     ; --                      ; --                  ; 00:01:43                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

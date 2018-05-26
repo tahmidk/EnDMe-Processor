@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
 valt_bidir_buf
-Z1 !s110 1527307053
+Z1 !s110 1527313457
 !i10b 1
 !s100 ;V>1ae:dINfZl1hgG^CJK2
 IDz8m6O6zoGAHkzAjbC[SQ3
@@ -23,7 +23,7 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1527307052.000000
+Z7 !s108 1527313457.000000
 Z8 !s107 c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_primitives.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|altera_ver|c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_primitives.v|
 !s101 -O0
@@ -219,7 +219,7 @@ R9
 !i113 1
 R10
 vcarry
-Z11 !s110 1527307052
+R1
 !i10b 1
 !s100 FD@5kG0C:mLW@6I8nlO>Z2
 IbZ<JOJF?j=]^@Rn6fbf8A0
@@ -240,7 +240,7 @@ R9
 !i113 1
 R10
 vcarry_sum
-R11
+R1
 !i10b 1
 !s100 AIWGZakUF8]V789[a`cWk3
 Ilg6@4zBLD[:gi_9?fOCmQ2
@@ -261,7 +261,7 @@ R9
 !i113 1
 R10
 vcascade
-R11
+R1
 !i10b 1
 !s100 cQV1KYGA<9HX[CBYT^l:n1
 I6IO]_MKeL3Gon2ULVfJ8]1
@@ -429,7 +429,7 @@ R9
 !i113 1
 R10
 vexp
-R11
+R1
 !i10b 1
 !s100 ?=3m4CE>YoSX13jbH8ogi1
 I?b^Z1==][Yz?Hh_Mn81zl1
@@ -450,7 +450,7 @@ R9
 !i113 1
 R10
 vglobal
-R11
+R1
 !i10b 1
 !s100 lKmX7;gI`XO0>GV6il];01
 I;1?8=QFE6KcIPNd37V8Jf1
@@ -513,7 +513,7 @@ R9
 !i113 1
 R10
 vlatch
-R11
+R1
 !i10b 1
 !s100 6L<i:EM=Ceea7LcF^H3ol1
 IT=OH=Pj`kNHJbg?mYG5<81
@@ -534,7 +534,7 @@ R9
 !i113 1
 R10
 vlut_input
-R11
+R1
 !i10b 1
 !s100 ;CRUY3Bm]JPg2bQRG^W580
 IBzfJ2JQjYBPI:RlImdW^k3
@@ -555,7 +555,7 @@ R9
 !i113 1
 R10
 vlut_output
-R11
+R1
 !i10b 1
 !s100 89:o4;F_XN6:`diQkd4HH0
 I=iK46D4bB^^WC8eR2`9mV0
@@ -576,7 +576,7 @@ R9
 !i113 1
 R10
 vopndrn
-R11
+R1
 !i10b 1
 !s100 Q2]a2IlhiC3gXYN?;SeKV3
 I47^A^<@=i9DVKnYSW<ga@1
@@ -618,7 +618,7 @@ R9
 !i113 1
 R10
 UPRIM_GDFF_HIGH
-R1
+Z11 !s110 1527313458
 !i10b 1
 !s100 DF0KXm=JMO>H0fXZZ[6_32
 IdEe8@LGzcYh5b=nB:1i=80
@@ -640,7 +640,7 @@ R9
 R10
 n@p@r@i@m_@g@d@f@f_@h@i@g@h
 UPRIM_GDFF_HIGH_SCLR_PRIORITY
-!s110 1527307054
+R11
 !i10b 1
 !s100 LoKLP3oE_l9`IL@o<KYA=2
 Ij1j5L4FbTFXWJg:0>7TG_3
@@ -769,7 +769,7 @@ R9
 !i113 1
 R10
 vrow_global
-R11
+R1
 !i10b 1
 !s100 0jQm6Khk6V:5;];PPXjl:0
 Iz=aC[>SlUZ^O`nPH1Z9SE1
@@ -790,7 +790,7 @@ R9
 !i113 1
 R10
 vsoft
-R11
+R1
 !i10b 1
 !s100 ;;iS>g<=H3GT6Kd?L3F?M3
 IS@FzRLIiTZ=o3j6]fDzW71
@@ -895,7 +895,7 @@ R9
 !i113 1
 R10
 vTRI
-R11
+R1
 !i10b 1
 !s100 iA0`k<U35f`MYG^;nP1oG1
 Ih71W`dJh7D0J2;KQFh2fU1
