@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
 vlpm_abs
-Z1 !s110 1527454710
+Z1 !s110 1527464118
 !i10b 1
 !s100 O9i<YS?ECZC8XU2m2T>HQ0
 IT0BNgM]QbzRdko]nbSX?93
@@ -23,7 +23,7 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1527454710.000000
+Z7 !s108 1527464117.000000
 Z8 !s107 c:/intelfpga_lite/17.1/quartus/eda/sim_lib/220model.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|lpm_ver|c:/intelfpga_lite/17.1/quartus/eda/sim_lib/220model.v|
 !s101 -O0
@@ -51,7 +51,7 @@ R9
 !i113 1
 R10
 vlpm_and
-R1
+Z11 !s110 1527464117
 !i10b 1
 !s100 =VzM;OhZJQ@Wjl;2UNDFd0
 IGSc98o8Te6VKZbJL0bL9R0
@@ -93,7 +93,7 @@ R9
 !i113 1
 R10
 vlpm_bustri
-R1
+R11
 !i10b 1
 !s100 J0ek53f5aGEe08O]9M7g41
 I1[6b2nc@NeDSh72:ck??93
@@ -156,7 +156,7 @@ R9
 !i113 1
 R10
 vlpm_constant
-R1
+R11
 !i10b 1
 !s100 FkMf<gh?_E[^916k78`m>1
 IF7Bf6PODGUml1Kjn9ODm`2
@@ -219,7 +219,7 @@ R9
 !i113 1
 R10
 vLPM_DEVICE_FAMILIES
-R1
+R11
 !i10b 1
 !s100 L`<Bd0JTNL:2;lDY0S`zk1
 ISeHD1BTc[XgjgO_l@]eJ92
@@ -388,7 +388,7 @@ R9
 !i113 1
 R10
 vLPM_HINT_EVALUATION
-R1
+R11
 !i10b 1
 !s100 `WKMS]SM@JbIe0gCi<3f82
 I_AMAC6hHN[Cc0<WW@Z7N81
@@ -431,7 +431,7 @@ R9
 !i113 1
 R10
 vlpm_inv
-R1
+R11
 !i10b 1
 !s100 ^?DV;oC5m>1zlEkCWIQzM1
 I@JEInHRWCE>5dOUj8LMzE0
@@ -473,7 +473,7 @@ R9
 !i113 1
 R10
 vLPM_MEMORY_INITIALIZATION
-R1
+R11
 !i10b 1
 !s100 DR_SV_J4fzH0gTOLESO6;1
 Io9XaK7hHgAXW@T`^48Rj_2
@@ -516,7 +516,7 @@ R9
 !i113 1
 R10
 vlpm_mux
-R1
+R11
 !i10b 1
 !s100 27TaUnFLk_F<gH`najTXL3
 IcJLSIP6>k?SOmUSQ4_OY23
@@ -537,7 +537,7 @@ R9
 !i113 1
 R10
 vlpm_or
-R1
+R11
 !i10b 1
 !s100 PVk12KKE0fG4m[5a;LJV22
 Inimn><SPRUM4==@BAQ9Mn0
@@ -684,7 +684,7 @@ R9
 !i113 1
 R10
 vlpm_xor
-R1
+R11
 !i10b 1
 !s100 5BXY01B<ogg>d2@mk^Kmo0
 IBHnWB[E3M`CP>0i@[=9D30

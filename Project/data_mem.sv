@@ -30,12 +30,12 @@ module data_mem (
 	// Initialization memory, seed with constants
 	initial 
 		$readmemh("mem_init.dat", mem_file);
-	/*integer i;
+	integer i;
 	initial begin
 		$display("rdata:");
 		for (i=0; i < 20; i=i+1)
 			$display("%d:%d",i,mem_file[i]);
-	end*/  
+	end
 	
 	// Read data from memory immediately
 	always @* begin

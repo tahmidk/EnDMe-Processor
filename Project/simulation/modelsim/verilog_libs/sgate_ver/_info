@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
 vio_buf_opdrn
-Z1 !s110 1527454711
+Z1 !s110 1527464118
 !i10b 1
 !s100 =^<AH`I:TA`[9YUe=h1;_1
 IFWj[XPDJ6C@:ndkDA6o1D2
@@ -23,7 +23,7 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1527454711.000000
+Z7 !s108 1527464118.000000
 Z8 !s107 c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|sgate_ver|c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v|
 !s101 -O0

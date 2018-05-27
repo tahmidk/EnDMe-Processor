@@ -16,7 +16,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition"
 
-// DATE "05/27/2018 13:57:58"
+// DATE "05/27/2018 16:22:32"
 
 // 
 // Device: Altera 5CGXFC7C7F23C8 Package FBGA484
@@ -30,13 +30,16 @@
 
 module top_level (
 	CLK,
-	RESET);
+	RESET,
+	done);
 input 	CLK;
 input 	RESET;
+output 	done;
 
 // Design Ports Information
-// CLK	=>  Location: PIN_C11,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// RESET	=>  Location: PIN_W8,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// CLK	=>  Location: PIN_G6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// RESET	=>  Location: PIN_P8,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// done	=>  Location: PIN_A10,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -55,7 +58,23 @@ wire \RESET~input_o ;
 wire \~QUARTUS_CREATED_GND~I_combout ;
 
 
-// Location: IOIBUF_X50_Y81_N75
+// Location: IOOBUF_X36_Y81_N36
+cyclonev_io_obuf \done~output (
+	.i(gnd),
+	.oe(vcc),
+	.dynamicterminationcontrol(gnd),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.parallelterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(done),
+	.obar());
+// synopsys translate_off
+defparam \done~output .bus_hold = "false";
+defparam \done~output .open_drain_output = "false";
+defparam \done~output .shift_series_termination_control = "false";
+// synopsys translate_on
+
+// Location: IOIBUF_X26_Y81_N41
 cyclonev_io_ibuf \CLK~input (
 	.i(CLK),
 	.ibar(gnd),
@@ -66,7 +85,7 @@ defparam \CLK~input .bus_hold = "false";
 defparam \CLK~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: IOIBUF_X4_Y0_N52
+// Location: IOIBUF_X28_Y0_N18
 cyclonev_io_ibuf \RESET~input (
 	.i(RESET),
 	.ibar(gnd),
@@ -77,7 +96,7 @@ defparam \RESET~input .bus_hold = "false";
 defparam \RESET~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: LABCELL_X19_Y25_N3
+// Location: LABCELL_X77_Y64_N3
 cyclonev_lcell_comb \~QUARTUS_CREATED_GND~I (
 // Equation(s):
 

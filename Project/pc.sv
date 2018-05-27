@@ -21,12 +21,14 @@ module pc (
 	output reg [15:0] pc_out
 );
 
+	initial pc_out <= -'d1;
+
 	/* On each posedge clock, or whenever the reset control is triggered
 	 *	update the program counter or reset it to 0
 	 */
 	always @(posedge CLK) begin
 		if(reset_ctrl) 
-			pc_out <= 4'h0000;
+			pc_out <= 16'h0;
 		else 
 			pc_out <= pcnext_in;
 	end

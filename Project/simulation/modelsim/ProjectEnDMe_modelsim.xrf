@@ -15,6 +15,7 @@ source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulat
 source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim/mem_init.dat
 source_file = 1, C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv
 design_name = top_level
+instance = comp, \done~output , done~output, top_level, 1
 instance = comp, \CLK~input , CLK~input, top_level, 1
 instance = comp, \RESET~input , RESET~input, top_level, 1
 instance = comp, \~QUARTUS_CREATED_GND~I , ~QUARTUS_CREATED_GND~I, top_level, 1

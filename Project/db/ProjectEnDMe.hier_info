@@ -1,6 +1,7 @@
 |top_level
 CLK => CLK.IN2
 RESET => RESET.IN1
+done << <GND>
 
 
 |top_level|instr_fetch:IF

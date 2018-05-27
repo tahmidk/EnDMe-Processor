@@ -13,14 +13,15 @@
  *		RESET - the control wire that resets pc to 0 if high (1-bit)
  *
  *	[Output]
- *		None - check that data_mem has correct outputs
+ *		done - expressed when PC reaches end of program
  ---------------------------------------------------------------------*/
 
 import definitions::*;
  
 module top_level(
 	input CLK,
-	input RESET
+	input RESET,
+	output reg done
 );
  
 	// Module wires/BUS
@@ -49,6 +50,13 @@ module top_level(
 	wire [1:0] ctrl_accDat;
 	wire ctrl_accWr;
 	wire [2:0] ctrl_alu;
+	
+	// Done flag
+	initial done <= 0;
+	always @(posedge CLK) begin
+		if(^instruction === 1'bX)
+			done <= 1;
+	end
  
 	// Initialize instruction fetch
 	wire accRslt;
@@ -121,4 +129,43 @@ module top_level(
 	);
  
  
+endmodule 
+
+
+// Test module for top level
+module tb_top();
+
+	reg CLK;
+	reg RESET;
+	wire done;
+
+	always #5 CLK = ~CLK;	
+	initial begin
+		CLK <= 0;
+		RESET <= 0;
+		#100 $stop;
+	end
+	
+	top_level TOP(
+		.CLK(CLK),
+		.RESET(RESET),
+		.done(done)
+	);
+	
+	// Stop when no more instructions
+	always begin
+		if(done) begin
+			// Print Contents of Reg File
+			integer i;
+			$display("Reg Data:");
+			for (i=0; i < 16; i=i+1)
+				$display("%d:%d",i,TOP.RF.core[i]);
+			
+			// Print Contents of Mem File
+			// Not Yet
+			
+			#10 $stop;
+		end
+	end
+
 endmodule
