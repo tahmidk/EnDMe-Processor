@@ -19,11 +19,11 @@ module instr_rom(
 );
 	 
 	// The memory file itself, an array of 2^16 9-bit instructions
-	logic [8:0] rom [2**16];
+	logic [8:0] rom[2**16];
 	
 	// Load machine code program into instruction ROM
 	initial 
-		$readmemb("machine_code.txt", rom);
+		$readmemb("machine_code.bin", rom);
 
 	// Fetch instruction and set it to output
 	assign instr_out = rom[addr_in];

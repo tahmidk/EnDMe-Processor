@@ -16,7 +16,7 @@
 #          Updated modelsim.ini.
 # vlog -vlog01compat -work altera_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_primitives.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:17 on May 25,2018
+# Start time: 13:58:29 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work altera_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_primitives.v 
 # -- Compiling module global
 # -- Compiling module carry
@@ -98,7 +98,7 @@
 # 	alt_iobuf_diff
 # 	alt_bidir_diff
 # 	alt_bidir_buf
-# End time: 22:44:18 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:30 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/lpm_ver
@@ -110,7 +110,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work lpm_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/220model.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:18 on May 25,2018
+# Start time: 13:58:30 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work lpm_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/220model.v 
 # -- Compiling module LPM_MEMORY_INITIALIZATION
 # -- Compiling module LPM_HINT_EVALUATION
@@ -174,7 +174,7 @@
 # 	lpm_inpad
 # 	lpm_outpad
 # 	lpm_bipad
-# End time: 22:44:18 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:30 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/sgate_ver
@@ -186,7 +186,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work sgate_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:18 on May 25,2018
+# Start time: 13:58:31 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work sgate_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v 
 # -- Compiling module oper_add
 # -- Compiling module oper_addsub
@@ -228,7 +228,7 @@
 # 	oper_decoder
 # 	oper_bus_mux
 # 	oper_latch
-# End time: 22:44:19 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:31 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_mf_ver
@@ -240,7 +240,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work altera_mf_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_mf.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:19 on May 25,2018
+# Start time: 13:58:31 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work altera_mf_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_mf.v 
 # -- Compiling module lcell
 # -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
@@ -370,7 +370,7 @@
 # 	alt_fault_injection
 # 	sld_virtual_jtag_basic
 # 	altsource_probe
-# End time: 22:44:20 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:32 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_lnsim_ver
@@ -382,7 +382,7 @@
 # Modifying modelsim.ini
 # vlog -sv -work altera_lnsim_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_lnsim.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:20 on May 25,2018
+# Start time: 13:58:32 on May 27,2018
 # vlog -reportprogress 300 -sv -work altera_lnsim_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_lnsim.sv 
 # -- Compiling package altera_lnsim_functions
 # -- Compiling package altera_generic_pll_functions
@@ -465,7 +465,7 @@
 # 	altera_iopll
 # 	fourteennm_altera_iopll
 # 	fourteennm_simple_iopll
-# End time: 22:44:21 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:33 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/cyclonev_ver
@@ -477,23 +477,23 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:21 on May 25,2018
+# Start time: 13:58:33 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v 
 # 
 # Top level modules:
-# End time: 22:44:23 on May 25,2018, Elapsed time: 0:00:02
+# End time: 13:58:36 on May 27,2018, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_hmi_atoms_ncrypt.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:23 on May 25,2018
+# Start time: 13:58:36 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_hmi_atoms_ncrypt.v 
 # 
 # Top level modules:
-# End time: 22:44:25 on May 25,2018, Elapsed time: 0:00:02
+# End time: 13:58:37 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_atoms.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:25 on May 25,2018
+# Start time: 13:58:37 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_atoms.v 
 # -- Compiling UDP CYCLONEV_PRIM_DFFE
 # -- Compiling UDP CYCLONEV_PRIM_DFFEAS
@@ -633,7 +633,7 @@
 # 	cyclonev_mem_phy
 # 	cyclonev_oscillator
 # 	cyclonev_hps_interface_fpga2sdram
-# End time: 22:44:25 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:38 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/cyclonev_hssi_ver
@@ -645,15 +645,15 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cyclonev_hssi_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:26 on May 25,2018
+# Start time: 13:58:39 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_hssi_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v 
 # 
 # Top level modules:
-# End time: 22:44:27 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:40 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work cyclonev_hssi_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_hssi_atoms.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:27 on May 25,2018
+# Start time: 13:58:40 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_hssi_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_hssi_atoms.v 
 # -- Compiling module cyclonev_hssi_8g_pcs_aggregate
 # -- Compiling module cyclonev_hssi_8g_rx_pcs
@@ -753,7 +753,7 @@
 # 	arriav_hssi_avmm_interface
 # 	arriav_hssi_pma_hi_pmaif
 # 	arriav_hssi_pma_hi_xcvrif
-# End time: 22:44:28 on May 25,2018, Elapsed time: 0:00:01
+# End time: 13:58:41 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/cyclonev_pcie_hip_ver
@@ -765,22 +765,22 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cyclonev_pcie_hip_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_pcie_hip_atoms_ncrypt.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:28 on May 25,2018
+# Start time: 13:58:41 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_pcie_hip_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/mentor/cyclonev_pcie_hip_atoms_ncrypt.v 
 # 
 # Top level modules:
-# End time: 22:44:30 on May 25,2018, Elapsed time: 0:00:02
+# End time: 13:58:43 on May 27,2018, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work cyclonev_pcie_hip_ver {c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_pcie_hip_atoms.v}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:30 on May 25,2018
+# Start time: 13:58:43 on May 27,2018
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_pcie_hip_ver c:/intelfpga_lite/17.1/quartus/eda/sim_lib/cyclonev_pcie_hip_atoms.v 
 # -- Compiling module cyclonev_hd_altpe2_hip_top
 # -- Compiling module arriav_hd_altpe2_hip_top
 # 
 # Top level modules:
 # 	cyclonev_hd_altpe2_hip_top
-# End time: 22:44:30 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # if {[file exists rtl_work]} {
@@ -794,120 +794,123 @@
 # 
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv 
 # -- Compiling package definitions
 # 
 # Top level modules:
 # 	--none--
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv 
 # -- Compiling module reg_file
 # 
 # Top level modules:
 # 	reg_file
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv 
 # -- Compiling module pc
-# ** Warning: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv(30): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv(29): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
 # 
 # 
 # Top level modules:
 # 	pc
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv 
 # -- Compiling module incrementor
 # 
 # Top level modules:
 # 	incrementor
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv}
-# Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv 
-# -- Compiling module data_mem
-# 
-# Top level modules:
-# 	data_mem
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv 
 # -- Compiling module instr_fetch
 # 
 # Top level modules:
 # 	instr_fetch
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv 
+# -- Compiling package top_level_sv_unit
+# -- Importing package definitions
 # -- Compiling module top_level
 # 
 # Top level modules:
 # 	top_level
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv 
 # -- Compiling module mux_2
 # 
 # Top level modules:
 # 	mux_2
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:44 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv 
 # -- Compiling module mux_4
 # 
 # Top level modules:
 # 	mux_4
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:44 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:45 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv 
 # -- Compiling module accumulator
 # -- Compiling module tb_accumulator
 # 
 # Top level modules:
 # 	tb_accumulator
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:45 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:45 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv 
 # -- Compiling module instr_rom
 # 
 # Top level modules:
 # 	instr_rom
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:45 on May 27,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv}
+# Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+# Start time: 13:58:45 on May 27,2018
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv 
+# -- Compiling module data_mem
+# -- Compiling module tb_data_mem
+# 
+# Top level modules:
+# 	tb_data_mem
+# End time: 13:58:45 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:45 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv 
 # -- Compiling package controller_sv_unit
 # -- Importing package definitions
@@ -915,22 +918,23 @@
 # 
 # Top level modules:
 # 	controller
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# End time: 13:58:45 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv}
 # Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
-# Start time: 22:44:31 on May 25,2018
+# Start time: 13:58:45 on May 27,2018
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project" C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv 
 # -- Compiling package alu_sv_unit
 # -- Importing package definitions
 # -- Compiling module alu
+# -- Compiling module tb_alu
 # 
 # Top level modules:
-# 	alu
-# End time: 22:44:31 on May 25,2018, Elapsed time: 0:00:00
+# 	tb_alu
+# End time: 13:58:45 on May 27,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-vsim work.tb_accumulator
+vsim work.instr_fetch
 # //  ModelSim PE Student Edition 10.4a Apr  7 2015 
 # //
 # //  Copyright 1991-2015 Mentor Graphics Corporation
@@ -950,33 +954,11 @@ vsim work.tb_accumulator
 # // FOR HIGHER EDUCATION PURPOSES ONLY
 # //
 # vsim -gui -l msim_transcript -do "ProjectEnDMe_run_msim_rtl_verilog.do" 
-# Start time: 22:44:36 on May 25,2018
+# Start time: 13:59:04 on May 27,2018
 # Loading sv_std.std
-# Loading work.tb_accumulator
-# Loading work.accumulator
-# Loading work.mux_4
-# ** Warning: (vsim-3015) C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(34): [PCDPC] - Port size (16) does not match connection size (8) for port 'din_0'. The port definition is at: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv(20).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_accumulator/ACC/mux_din File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
-# ** Warning: (vsim-3015) C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(34): [PCDPC] - Port size (16) does not match connection size (8) for port 'din_1'. The port definition is at: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv(21).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_accumulator/ACC/mux_din File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
-# ** Warning: (vsim-3015) C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(34): [PCDPC] - Port size (16) does not match connection size (8) for port 'din_2'. The port definition is at: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv(22).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_accumulator/ACC/mux_din File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
-# ** Warning: (vsim-3015) C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(34): [PCDPC] - Port size (16) does not match connection size (8) for port 'din_3'. The port definition is at: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv(23).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_accumulator/ACC/mux_din File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
-# ** Warning: (vsim-3015) C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(34): [PCDPC] - Port size (16) does not match connection size (8) for port 'mux_out'. The port definition is at: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv(25).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_accumulator/ACC/mux_din File: C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
-add wave -position end  sim:/tb_accumulator/CLK
-add wave -position end  sim:/tb_accumulator/data_ctrl
-add wave -position end  sim:/tb_accumulator/accwrite_ctrl
-add wave -position end  sim:/tb_accumulator/acc_out
-run
-# Data Ctrl = x | AccWr Ctrl = x | Output =   x
-# Data Ctrl = 1 | AccWr Ctrl = 1 | Output =   2
-# Data Ctrl = 3 | AccWr Ctrl = 1 | Output =   4
-# Data Ctrl = 0 | AccWr Ctrl = 0 | Output =   4
-# Data Ctrl = 0 | AccWr Ctrl = 1 | Output =   1
-# ** Note: $stop    : C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv(120)
-#    Time: 55 ns  Iteration: 0  Instance: /tb_accumulator
-# Break in Module tb_accumulator at C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv line 120
-# End time: 22:45:24 on May 25,2018, Elapsed time: 0:00:48
-# Errors: 0, Warnings: 5
+# Loading work.instr_fetch
+# Loading work.pc
+# Loading work.incrementor
+# Loading work.mux_2
+# End time: 13:59:28 on May 27,2018, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 0

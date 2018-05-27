@@ -42,10 +42,10 @@ module alu (
 			Sub: 
 				rslt_out = reg_in - acc_in;
 			// Logical shift left
-			Sll: 
+			Sfl: 
 				rslt_out = acc_in << reg_in;
 			// Logical right shift
-			Srl: 
+			Sfr: 
 				rslt_out = acc_in >> reg_in;
 			// Compare equality
 			Equ:
@@ -72,26 +72,41 @@ module tb_alu();
 	reg [7:0] reg_in;
 	reg [7:0] acc_in;
 	// Control
-	reg [2:0] op;
+	reg [2:0] op_ctrl;
 	// Output
 	wire [7:0] rslt;
 	
+	// So op_ctrl will be displayed as Add or Sub instead of 000 or 001 in ModelSim
+	ALU_Ops op;
+	assign op = ALU_Ops'(op_ctrl);
 	
 	// Make the module
 	alu ALU(
 		.reg_in(reg_in),
 		.acc_in(acc_in),
-		.op_ctrl(op),
+		.op_ctrl(op_ctrl),
 		.rslt_out(rslt)
 	);
 	
 	
 	// The testbench
 	initial begin
-		reg_in <= 4;
-		acc_in <= 8;
+		$monitor("Reg = %d, Acc = %d | Op Ctrl = %s | Output = %d", reg_in, acc_in, op, rslt);
 		
-		// 
+			reg_in <= 'd4; acc_in <= 'd1; op_ctrl <= Add;	// 4 + 1 = 5
+		#5 reg_in <= 'd4; acc_in <= 'd1; op_ctrl <= Sub;	// 4 - 1 = 3
+		#5 reg_in <= 'd1; acc_in <= 'd4; op_ctrl <= Sub;	// 1 - 4 = -3
+		#5 reg_in <= 'd2; acc_in <= 'd4; op_ctrl <= Sfl;	// 4 << 2 = 16
+		#5 reg_in <= 'd2; acc_in <= 'd4; op_ctrl <= Sfr;	// 4 >> 2 = 1
+		#5 reg_in <= 'd4; acc_in <= 'd4; op_ctrl <= Equ;	// 4 == 4 = 1
+		#5 reg_in <= 'd0; acc_in <= 'd4; op_ctrl <= Equ;	// 0 == 4 = 0
+		#5 reg_in <= 'd4; acc_in <= 'd1; op_ctrl <= Gtr;	// 4 > 1 = 1
+		#5 reg_in <= 'd1; acc_in <= 'd4; op_ctrl <= Gtr;	// 1 > 4 = 0
+		#5 reg_in <= 'd1; acc_in <= 'd1; op_ctrl <= Gtr;	// 1 > 1 = 0
+		#5 reg_in <= 'd4; acc_in <= 'd255; op_ctrl <= And;	// 4 & 255 = 4
+		#5 reg_in <= 'd3; acc_in <= 'd1; op_ctrl <= Xor;	// 3 XOR 1 = 2
+		
+		#5 $stop;
 	end
 
 endmodule

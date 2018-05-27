@@ -49,13 +49,13 @@ vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Proj
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv}
-vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv}
+vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv}
 vlog -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project {C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv}
 

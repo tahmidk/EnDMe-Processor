@@ -15,11 +15,13 @@
  *	[Output]
  *		None - check that data_mem has correct outputs
  ---------------------------------------------------------------------*/
+
+import definitions::*;
  
- module top_level(
+module top_level(
 	input CLK,
 	input RESET
- );
+);
  
 	// Module wires/BUS
 	wire [7:0] dst_data;
@@ -29,6 +31,14 @@
 	wire [7:0] reg_output;
 	wire [7:0] alu_output;
 	wire [7:0] mem_output;
+	
+	// Parse instruction
+	wire [7:0] imm;
+	wire typ;
+	wire [3:0] op;
+	assign imm = instruction[7:0];
+	assign typ = instruction[8];
+	assign op = instruction[7:4];
 	
 	// Control wires
 	wire ctrl_branch;
@@ -41,13 +51,15 @@
 	wire [2:0] ctrl_alu;
  
 	// Initialize instruction fetch
+	wire accRslt;
+	assign accRslt = (acc_output == 1);
 	instr_fetch IF(
 		.CLK(CKL),
 		.dst_in(dst_data),
 		.reset_ctrl(RESET),
 		.br_ctrl(ctrl_branch),
 		.jmp_ctrl(ctrl_jump),
-		.accdata_in(acc_output),
+		.accdata_in(accRslt),
 		.instr_addr(instr_addr_bus)
 	);
 	
@@ -59,7 +71,7 @@
 	
 	// Initialize accumulator
 	accumulator ACC(
-		.data_imm_in(instruction[7:0]),
+		.data_imm_in(imm),
 		.data_reg_in(reg_output),
 		.data_mem_in(mem_output),
 		.data_alu_in(alu_output),
@@ -70,9 +82,10 @@
 	
 	// Initialize control unit
 	controller CTRL(
-		.TYP(instruction[8]),
-		.OP(instruction[7:4]),
+		.TYP(typ),
+		.OP(op),
 		.br_ctrl(ctrl_branch),
+		.jmp_ctrl(ctrl_jump),
 		.regwrite_ctrl(ctrl_regWr),
 		.aluop_ctrl(ctrl_alu),
 		.memwrite_ctrl(ctrl_memWr),
@@ -108,4 +121,4 @@
 	);
  
  
- endmodule
+endmodule

@@ -1,11 +1,3 @@
-save loop
-store $dst
-
-#Comment
-loop:
-add $r3
-sub $r4
-btr
-
-save #2
-store $r2
+save #8
+store $r1
+add $r1

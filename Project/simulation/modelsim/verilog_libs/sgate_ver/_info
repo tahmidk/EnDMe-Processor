@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
 vio_buf_opdrn
-Z1 !s110 1527313458
+Z1 !s110 1527454711
 !i10b 1
 !s100 =^<AH`I:TA`[9YUe=h1;_1
 IFWj[XPDJ6C@:ndkDA6o1D2
@@ -23,7 +23,7 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1527313458.000000
+Z7 !s108 1527454711.000000
 Z8 !s107 c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|sgate_ver|c:/intelfpga_lite/17.1/quartus/eda/sim_lib/sgate.v|
 !s101 -O0
@@ -114,7 +114,7 @@ R9
 !i113 1
 R10
 voper_bus_mux
-Z11 !s110 1527313459
+R1
 !i10b 1
 !s100 83iY7?J9JgD`=KN3I^];33
 IcfC_8^aKRJ=`:<5YZ:ARI2
@@ -135,7 +135,7 @@ R9
 !i113 1
 R10
 voper_decoder
-R11
+R1
 !i10b 1
 !s100 BhU]JWh4CAH3f[ALIgD?91
 I6h5AlHhmBGd^?>GS0LO0Y1
@@ -177,7 +177,7 @@ R9
 !i113 1
 R10
 voper_latch
-R11
+R1
 !i10b 1
 !s100 6TkzBj8lWoX[Wk_Oek;zG0
 Ib<EWGI_N79UcN900ZGBI?2
@@ -219,7 +219,7 @@ R9
 !i113 1
 R10
 voper_less_than
-R11
+R1
 !i10b 1
 !s100 mkW0GJN@;6C<2gM?VlHk40
 Ii@[B5;cN3:CP0OYkSjH]e3
@@ -282,7 +282,7 @@ R9
 !i113 1
 R10
 voper_mux
-R11
+R1
 !i10b 1
 !s100 1BV^<NLG6]@XcIB4ATlBY2
 InBOaDoD:]RSdNOhgLQ=Ak0
@@ -345,7 +345,7 @@ R9
 !i113 1
 R10
 voper_rotate_right
-R11
+R1
 !i10b 1
 !s100 0odf;mlW;hE0G1:GS066I2
 Ib7GfM12>FX6=YC4foBAY01
@@ -366,7 +366,7 @@ R9
 !i113 1
 R10
 voper_selector
-R11
+R1
 !i10b 1
 !s100 W1R9=N?MT:3kj1R0<;l[F0
 IRBTQMmX:]B?1>^:`Z`A=70

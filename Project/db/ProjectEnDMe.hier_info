@@ -1,5 +1,5 @@
 |top_level
-CLK => CLK.IN3
+CLK => CLK.IN2
 RESET => RESET.IN1
 
 
@@ -218,14 +218,6 @@ instr_out[8] <= rom.DATAOUT8
 
 
 |top_level|accumulator:ACC
-CLK => acc_out[0]~reg0.CLK
-CLK => acc_out[1]~reg0.CLK
-CLK => acc_out[2]~reg0.CLK
-CLK => acc_out[3]~reg0.CLK
-CLK => acc_out[4]~reg0.CLK
-CLK => acc_out[5]~reg0.CLK
-CLK => acc_out[6]~reg0.CLK
-CLK => acc_out[7]~reg0.CLK
 data_imm_in[0] => data_imm_in[0].IN1
 data_imm_in[1] => data_imm_in[1].IN1
 data_imm_in[2] => data_imm_in[2].IN1
@@ -260,22 +252,22 @@ data_alu_in[6] => data_alu_in[6].IN1
 data_alu_in[7] => data_alu_in[7].IN1
 data_ctrl[0] => data_ctrl[0].IN1
 data_ctrl[1] => data_ctrl[1].IN1
-accwrite_ctrl => acc_out[0]~reg0.ENA
-accwrite_ctrl => acc_out[1]~reg0.ENA
-accwrite_ctrl => acc_out[2]~reg0.ENA
-accwrite_ctrl => acc_out[3]~reg0.ENA
-accwrite_ctrl => acc_out[4]~reg0.ENA
-accwrite_ctrl => acc_out[5]~reg0.ENA
-accwrite_ctrl => acc_out[6]~reg0.ENA
-accwrite_ctrl => acc_out[7]~reg0.ENA
-acc_out[0] <= acc_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[1] <= acc_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[2] <= acc_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[3] <= acc_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[4] <= acc_out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[5] <= acc_out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[6] <= acc_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-acc_out[7] <= acc_out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+accwrite_ctrl => acc_out[0]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[1]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[2]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[3]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[4]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[5]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[6]$latch.LATCH_ENABLE
+accwrite_ctrl => acc_out[7]$latch.LATCH_ENABLE
+acc_out[0] <= acc_out[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[1] <= acc_out[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[2] <= acc_out[2]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[3] <= acc_out[3]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[4] <= acc_out[4]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[5] <= acc_out[5]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[6] <= acc_out[6]$latch.DB_MAX_OUTPUT_PORT_TYPE
+acc_out[7] <= acc_out[7]$latch.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |top_level|accumulator:ACC|mux_4:mux_din
@@ -394,20 +386,78 @@ mux_out[15] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |top_level|controller:CTRL
-TYP => accwrite_ctrl.DATAIN
-OP[0] => ~NO_FANOUT~
-OP[1] => ~NO_FANOUT~
-OP[2] => ~NO_FANOUT~
-OP[3] => ~NO_FANOUT~
-br_ctrl <= <GND>
-regwrite_ctrl <= <GND>
-aluop_ctrl[0] <= <GND>
-aluop_ctrl[1] <= <GND>
-aluop_ctrl[2] <= <GND>
-memwrite_ctrl <= <GND>
-accdata_ctrl[0] <= <GND>
-accdata_ctrl[1] <= <GND>
-accwrite_ctrl <= TYP.DB_MAX_OUTPUT_PORT_TYPE
+TYP => br_ctrl.OUTPUTSELECT
+TYP => jmp_ctrl.OUTPUTSELECT
+TYP => regwrite_ctrl.OUTPUTSELECT
+TYP => aluop_ctrl.OUTPUTSELECT
+TYP => aluop_ctrl.OUTPUTSELECT
+TYP => aluop_ctrl.OUTPUTSELECT
+TYP => memwrite_ctrl.OUTPUTSELECT
+TYP => accdata_ctrl.OUTPUTSELECT
+TYP => accdata_ctrl.OUTPUTSELECT
+TYP => accwrite_ctrl.OUTPUTSELECT
+OP[0] => Equal0.IN7
+OP[0] => Equal1.IN7
+OP[0] => Equal2.IN7
+OP[0] => Equal3.IN7
+OP[0] => Equal4.IN7
+OP[0] => Equal5.IN7
+OP[0] => Equal6.IN7
+OP[0] => Equal7.IN7
+OP[0] => Equal8.IN7
+OP[0] => Equal9.IN7
+OP[0] => Equal10.IN7
+OP[0] => Equal11.IN7
+OP[0] => Equal12.IN7
+OP[1] => Equal0.IN6
+OP[1] => Equal1.IN6
+OP[1] => Equal2.IN6
+OP[1] => Equal3.IN6
+OP[1] => Equal4.IN6
+OP[1] => Equal5.IN6
+OP[1] => Equal6.IN6
+OP[1] => Equal7.IN6
+OP[1] => Equal8.IN6
+OP[1] => Equal9.IN6
+OP[1] => Equal10.IN6
+OP[1] => Equal11.IN6
+OP[1] => Equal12.IN6
+OP[2] => Equal0.IN5
+OP[2] => Equal1.IN5
+OP[2] => Equal2.IN5
+OP[2] => Equal3.IN5
+OP[2] => Equal4.IN5
+OP[2] => Equal5.IN5
+OP[2] => Equal6.IN5
+OP[2] => Equal7.IN5
+OP[2] => Equal8.IN5
+OP[2] => Equal9.IN5
+OP[2] => Equal10.IN5
+OP[2] => Equal11.IN5
+OP[2] => Equal12.IN5
+OP[3] => Equal0.IN4
+OP[3] => Equal1.IN4
+OP[3] => Equal2.IN4
+OP[3] => Equal3.IN4
+OP[3] => Equal4.IN4
+OP[3] => Equal5.IN4
+OP[3] => Equal6.IN4
+OP[3] => Equal7.IN4
+OP[3] => Equal8.IN4
+OP[3] => Equal9.IN4
+OP[3] => Equal10.IN4
+OP[3] => Equal11.IN4
+OP[3] => Equal12.IN4
+br_ctrl <= br_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+jmp_ctrl <= jmp_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+regwrite_ctrl <= regwrite_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+aluop_ctrl[0] <= aluop_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+aluop_ctrl[1] <= aluop_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+aluop_ctrl[2] <= aluop_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+memwrite_ctrl <= memwrite_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+accdata_ctrl[0] <= accdata_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+accdata_ctrl[1] <= accdata_ctrl.DB_MAX_OUTPUT_PORT_TYPE
+accwrite_ctrl <= accwrite_ctrl.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |top_level|reg_file:RF

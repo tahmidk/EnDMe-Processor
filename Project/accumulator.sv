@@ -28,6 +28,8 @@ module accumulator(
 
 	// Accumulator's data
 	logic [7:0] acc_data;
+	
+	initial acc_data = 8'bxxxxxxxx;
 
 	// Accumulator is basically a MUX with specific control signals
 	mux_4 mux_din(
@@ -40,9 +42,10 @@ module accumulator(
 	);
 	
 	// Write only if the write control is expressed
-	always_comb begin
-		if(accwrite_ctrl)
+	always_latch begin
+		if(accwrite_ctrl) begin
 			acc_out = acc_data;
+		end
 	end
 
 endmodule

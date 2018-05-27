@@ -10,7 +10,7 @@
  *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
  *		br_ctrl - the control wire determining control flow (btr) (1-bit)
  *		jmp_ctrl - the control wire determining control flow (jmp) (1-bit)
- *		accdata_in - the data currently in the accumulator (1-bit)
+ *		accdata_in - the data currently in the accumulator (== 1 or not) (1-bit)
  *
  * [Outputs]
  * 	instr_addr - the address of the next instruction (16-bits)
@@ -32,7 +32,7 @@ module instr_fetch(
 	wire[15:0] pc_next;	// Wire from 2:1 MUX to pc
 	wire br_sel;			// Branch selector
 
-	// The branch address is calculated combinatorily
+	// The branch address is calculated absolutely
 	assign pc_br = {pc_inc[15:8], dst_in};
 	
 	// Initialize and wire the program counter module

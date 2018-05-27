@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
 va_graycounter
-Z1 !s110 1527313460
+Z1 !s110 1527454712
 !i10b 1
 !s100 nH]fheH07VWg[3ZnbC2JG2
 ImG8AGKIIL8=XkA7;X9a[C3
@@ -23,7 +23,7 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1527313459.000000
+Z7 !s108 1527454711.000000
 Z8 !s107 c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_mf.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|altera_mf_ver|c:/intelfpga_lite/17.1/quartus/eda/sim_lib/altera_mf.v|
 !s101 -O0
@@ -240,7 +240,7 @@ R9
 !i113 1
 R10
 valtaccumulate
-Z11 !s110 1527313459
+R1
 !i10b 1
 !s100 L^_Z=N1Bi:;:jQ0SB<AW@1
 IGzC3W6K29O8k8okn5@z>P0
@@ -366,7 +366,7 @@ R9
 !i113 1
 R10
 vALTERA_DEVICE_FAMILIES
-R11
+Z11 !s110 1527454711
 !i10b 1
 !s100 3ZXK5HH@J[`Nj4EIGNkM81
 IL8f9CVieiYOBJzn6;5CWf0
@@ -474,7 +474,7 @@ R9
 !i113 1
 R10
 valtera_syncram_derived
-R11
+R1
 !i10b 1
 !s100 =_[5eKRn_W?S=Oed0NJSF3
 I0>28Z[KX366kKC?k2?4VZ3
@@ -495,7 +495,7 @@ R9
 !i113 1
 R10
 valtera_syncram_derived_forwarding_logic
-R11
+R1
 !i10b 1
 !s100 Q<m[X8AHgTI?1WRR[gFGf2
 Ij:8HPX@m2:lc>z1;BWWFG0
@@ -558,7 +558,7 @@ R9
 !i113 1
 R10
 valtlvds_tx
-R11
+R1
 !i10b 1
 !s100 cgBQa:752AZ?[4SfV7MFW1
 I1[ncc=n>^^aXj;QdOdPzV0
@@ -978,7 +978,7 @@ R9
 !i113 1
 R10
 vdcfifo
-R11
+R1
 !i10b 1
 !s100 B]NKPE<4NbOAdfg^HodX=0
 IoY[KNGVV[eHb6zR4<PB=:2
@@ -999,7 +999,7 @@ R9
 !i113 1
 R10
 vdcfifo_async
-R11
+R1
 !i10b 1
 !s100 7aWA7;eCH`]gJNAVPUe`C3
 I8hdIPCKd01WXm<9`Eome30
@@ -1020,7 +1020,7 @@ R9
 !i113 1
 R10
 vdcfifo_dffpipe
-R11
+R1
 !i10b 1
 !s100 126eA=L9^`Of;]l=bXIG>3
 ITJbe1Z0@WYEa11Fn:?WzD3
@@ -1041,7 +1041,7 @@ R9
 !i113 1
 R10
 vdcfifo_fefifo
-R11
+R1
 !i10b 1
 !s100 ch0SgFonRERLmXcTkh_Ad2
 I33PozY2;_K6MDdR`Z@G372
@@ -1062,7 +1062,7 @@ R9
 !i113 1
 R10
 vdcfifo_low_latency
-R11
+R1
 !i10b 1
 !s100 1e5XPHFDM3clYfBlemN>R1
 IhB4?fF@z90;dP9aYN34@P1
@@ -1083,7 +1083,7 @@ R9
 !i113 1
 R10
 vdcfifo_mixed_widths
-R11
+R1
 !i10b 1
 !s100 Zo[X;0[A^IPn]51R467Mj0
 IlO^BR`z[37AEdd[be>]Zd0
@@ -1104,7 +1104,7 @@ R9
 !i113 1
 R10
 vdcfifo_sync
-R11
+R1
 !i10b 1
 !s100 <U:cdL@Y38WiQ7TIJI<iU3
 IhaEVjhceiWd`6Xj>KhdN80
@@ -1167,7 +1167,7 @@ R9
 !i113 1
 R10
 vflexible_lvds_rx
-R11
+R1
 !i10b 1
 !s100 Xd?<6>BYc_MGa_T=E_]cE2
 I@i[WNHXz_gb3mXjnLadVR0
@@ -1188,7 +1188,7 @@ R9
 !i113 1
 R10
 vflexible_lvds_tx
-R11
+R1
 !i10b 1
 !s100 ZW9ZlkcTiM:Yo=4PbLf?I0
 IXJ^ZDDgGnO[@[a:n0c20W0
@@ -1617,7 +1617,7 @@ R9
 !i113 1
 R10
 vstratix_tx_outclk
-R11
+R1
 !i10b 1
 !s100 McB;WS<TASiTHF:`3;fW`3
 I5_0V2SCCf3Gf[YOblczNi0
@@ -1680,7 +1680,7 @@ R9
 !i113 1
 R10
 vstratixii_tx_outclk
-R11
+R1
 !i10b 1
 !s100 Rfg0N_0dP4h0e2jHClji`2
 IRk]UM^1L`T5<2QhQ2@P7n2
@@ -1701,7 +1701,7 @@ R9
 !i113 1
 R10
 vstratixiii_lvds_rx
-R11
+R1
 !i10b 1
 !s100 <Ck8^ah?ZD4_[;CDUe^:J2
 IC7:IN98Ve1lmCb9hMNj1W3
@@ -1722,7 +1722,7 @@ R9
 !i113 1
 R10
 vstratixiii_lvds_rx_channel
-R11
+R1
 !i10b 1
 !s100 QGJmGm`U8b44`JU4zeXkG3
 IaB;_9h=_2ZnG0EURSIWcj2
@@ -1743,7 +1743,7 @@ R9
 !i113 1
 R10
 vstratixiii_lvds_rx_dpa
-R11
+R1
 !i10b 1
 !s100 SCN5fQ<OCbRLQXA<2KTFO1
 I_]=o4:FHY=mJBRdzlVlAP1
@@ -1764,7 +1764,7 @@ R9
 !i113 1
 R10
 vstratixv_local_clk_divider
-R11
+R1
 !i10b 1
 !s100 ?1EI4[T>j8LG26_MkSIMR1
 I1?7CRd_Lf6?kEi:EH;mUS1
