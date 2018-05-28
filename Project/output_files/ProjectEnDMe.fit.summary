@@ -1,4 +1,4 @@
-Fitter Status : Successful - Wed May 23 17:11:28 2018
+Fitter Status : Successful - Sun May 27 23:11:45 2018
 Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 Revision Name : ProjectEnDMe
 Top-level Entity Name : top_level
@@ -7,7 +7,7 @@ Device : 5CGXFC7C7F23C8
 Timing Models : Final
 Logic utilization (in ALMs) : 1 / 56,480 ( < 1 % )
 Total registers : 0
-Total pins : 2 / 268 ( < 1 % )
+Total pins : 3 / 268 ( 1 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 7,024,640 ( 0 % )
 Total RAM Blocks : 0 / 686 ( 0 % )

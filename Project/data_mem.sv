@@ -25,29 +25,80 @@ module data_mem (
 );			 
 
 	// The memory file itself, a list of 2^8 memory slots
-	logic [7:0] mem_file [2**8];
+	reg [7:0] mem_file [2**8];
 
 	// Initialization memory, seed with constants
-	//initial 
-	//	$readmem_ctrlh("dataram_init.list", mem_file);
-
-	always @*
-		begin
-			// Read data from memory immediately
-			data_out = mem_file[addr_in];
-			// Diagnostic print statement (TODO: remove after debug)
-			$display("Memory read M[%d] = %d", addr_in, data_out);
-		end
+	initial 
+		$readmemh("mem_init.dat", mem_file);
+	integer i;
+	initial begin
+		$display("rdata:");
+		for (i=0; i < 20; i=i+1)
+			$display("%d:%d",i,mem_file[i]);
+	end
+	
+	// Read data from memory immediately
+	always @* begin
+		data_out = mem_file[addr_in];
+		$display("Memory read M[%d] = %d", addr_in, data_out);
+	end
 
 	// Write data to memory sequentially
-	always_ff @(posedge CLK) 
-		begin
-			if(writemem_ctrl) 
-				begin
-					mem_file[addr_in] <= data_in;
-					// Diagnostic print statement (TODO: remove after debug)
-					$display("Memory write M[%d] = %d", addr_in, data_in);
-				end
-		end
+	always_ff @(posedge CLK) begin
+		if(writemem_ctrl) 
+			begin
+				mem_file[addr_in] <= data_in;
+				$display("Memory write M[%d] = %d", addr_in, data_in);
+			end
+	end
 
 endmodule
+
+
+// Data Memory testbench
+module tb_data_mem();
+
+	// Clock
+	reg CLK;
+	// Inputs
+	reg [7:0] addr;
+	reg [7:0] din;
+	// Controls
+	reg writeMem;
+	// Output
+	wire [7:0] dout;
+	
+	// Run CLK
+	always #5 CLK = ~CLK;
+	
+	// Make the module
+	data_mem DM(
+		.CLK(CLK),
+		.addr_in(addr),
+		.data_in(din),
+		.writemem_ctrl(writeMem),
+		.data_out(dout)
+	);
+	
+	// The testbench
+	initial begin
+		// $monitor("addr = %d, write = %b | din = %d | dout = %d", addr, writeMem, din, dout);
+		CLK <= 0;
+		
+		addr <= 'd0; din <= 'd33; writeMem <= 0;
+		#5 addr <= 'd0; din <= 'd33; writeMem <= 1;
+		#10 addr <= 'd0; din <= 'd33; writeMem <= 0;
+		
+		#10 addr <= 'd1; din <= 'd33; writeMem <= 0;
+		#10 addr <= 'd2; din <= 'd33; writeMem <= 0;
+		#10 addr <= 'd0; din <= 'd33; writeMem <= 0;
+		#10 addr <= 'd42; din <= 'd33; writeMem <= 0;
+		#10 addr <= 'd43; din <= 'd33; writeMem <= 0;
+		#10 addr <= 'd43; din <= 'd33; writeMem <= 1;
+		#10 addr <= 'd43; din <= 'd33; writeMem <= 0;
+
+		#10 $stop;
+		
+	end
+
+endmodule 

@@ -10,7 +10,7 @@
  *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
  *		br_ctrl - the control wire determining control flow (btr) (1-bit)
  *		jmp_ctrl - the control wire determining control flow (jmp) (1-bit)
- *		zero_ctrl - the control wire from the ALU zero line (1-bit)
+ *		accdata_in - the data currently in the accumulator (== 1 or not) (1-bit)
  *
  * [Outputs]
  * 	instr_addr - the address of the next instruction (16-bits)
@@ -23,7 +23,7 @@ module instr_fetch(
 	input reset_ctrl,
 	input br_ctrl,
 	input jmp_ctrl,
-	input zero_ctrl,
+	input accdata_in,
 	output [15:0] instr_addr
 );
 
@@ -32,7 +32,7 @@ module instr_fetch(
 	wire[15:0] pc_next;	// Wire from 2:1 MUX to pc
 	wire br_sel;			// Branch selector
 
-	// The branch address is calculated combinatorily
+	// The branch address is calculated absolutely
 	assign pc_br = {pc_inc[15:8], dst_in};
 	
 	// Initialize and wire the program counter module
@@ -46,11 +46,11 @@ module instr_fetch(
 	// Initialize and wire the incrementor
 	incrementor INC(
 		.a(instr_addr),
-		.a_inc(pc_inc),
+		.a_inc(pc_inc)
 	);
 	
 	// Next PC source selector MUX
-	assign br_sel = (br_ctrl & zero_ctrl) | jmp_ctrl;
+	assign br_sel = (br_ctrl & (accdata_in == 1'bx ? 0 : accdata_in)) | jmp_ctrl;
 	mux_2 mux_br(
 		.din_0(pc_inc),
 		.din_1(pc_br),
@@ -59,3 +59,64 @@ module instr_fetch(
 	);
 
 endmodule
+
+module tb_instr_fetch();
+
+	// Clock
+	reg CLK;
+	// Inputs
+	reg [7:0] dst_in;
+	// Controls
+	reg reset_ctrl;
+	reg br_ctrl;
+	reg jmp_ctrl;
+	reg accdata_in;
+	// Output
+	wire [15:0] instr_addr;
+	
+	instr_fetch IF(
+		.CLK(CLK),
+		.dst_in(dst_in),
+		.reset_ctrl(reset_ctrl),
+		.br_ctrl(br_ctrl),
+		.jmp_ctrl(jmp_ctrl),
+		.accdata_in(accdata_in),
+		.instr_addr(instr_addr)
+	);
+	
+	always #5 CLK = ~CLK;
+	
+	initial begin
+		CLK <= 0;
+		dst_in <= 0;
+		reset_ctrl <= 0;
+		br_ctrl <= 0;
+		jmp_ctrl <= 0;
+		accdata_in <= 1;
+		
+		$monitor("Address out = %d", instr_addr);
+		
+		#5
+		// instr_addr should be 0
+		
+		#10
+		// instr_addr should be 1
+		
+		#10
+		// instr_addr should be 2
+		
+		#10
+		// instr_addr should be 3
+		
+		#10
+		// instr_addr should be 4
+		br_ctrl <= 1;
+		
+		#10
+		// instr_addr should be 0
+		br_ctrl <= 0;
+		
+		#20 $stop;
+	end
+	
+endmodule 

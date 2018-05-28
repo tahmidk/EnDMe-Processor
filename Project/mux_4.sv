@@ -22,7 +22,7 @@ module  mux_4 #(parameter data_width=16)(
 	input [data_width-1:0] din_2,
 	input [data_width-1:0] din_3,
 	input [1:0] sel,
-	output [data_width-1:0] mux_out
+	output reg [data_width-1:0] mux_out
 );
 
 	always_comb

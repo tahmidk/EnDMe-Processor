@@ -86,7 +86,7 @@ if not len(sys.argv) == 2:
 else:
 	# Initialize input and output files
 	assembly_in = open(sys.argv[1], 'r')
-	machine_code_out = open("machine_code.txt", 'w')
+	machine_code_out = open("machine_code.bin", 'w')
 
 	# Fetch all instructions and labels and initialize the instructions and
 	# labels data structures

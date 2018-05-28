@@ -16,8 +16,8 @@ package definitions;
 	typedef enum logic[2:0] {
 	  Add = 3'b000,	// Addition
 	  Sub = 3'b001,	// Subtraction
-	  Sll = 3'b010,	// Logical shift left
-	  Srl = 3'b011,	// Logical shift right
+	  Sfl = 3'b010,	// Logical shift left
+	  Sfr = 3'b011,	// Logical shift right
 	  Equ = 3'b100,	// Compare equality
 	  Gtr = 3'b101,	// compare greater than
 	  And = 3'b110,	// Bitwise AND

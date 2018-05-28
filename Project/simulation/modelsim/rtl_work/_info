@@ -1,0 +1,589 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/simulation/modelsim
+vaccumulator
+Z1 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+Z2 !s110 1527488975
+!i10b 1
+!s100 DE]bSUiMZT[AJCF8IlH0:3
+I]Fcc[CPbbhRF>`:_FSbR83
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 accumulator_sv_unit
+S1
+R0
+Z5 w1527488932
+Z6 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv
+Z7 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv
+Z8 L0 19
+Z9 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z10 !s108 1527488975.000000
+Z11 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv|
+Z12 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/accumulator.sv|
+!s101 -O0
+!i113 1
+Z13 o-sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+Z14 !s92 -sv -work work +incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+valu
+R1
+Z15 DXx4 work 11 definitions 0 22 3WPKZBNDmHoDGMU;mW1D52
+Z16 DXx4 work 11 alu_sv_unit 0 22 b8loPZQ0L`;Q[cO?_U[8a3
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 i[Wl@8S27J?kfTUQT2XTe1
+Ic7ajBlTUie<AJKX?:z]If0
+Z17 !s105 alu_sv_unit
+S1
+R0
+Z18 w1527453256
+Z19 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv
+Z20 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv
+Z21 L0 20
+R9
+R10
+Z22 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv|
+Z23 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/alu.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+Xalu_sv_unit
+R1
+R15
+Vb8loPZQ0L`;Q[cO?_U[8a3
+r1
+!s85 0
+31
+!i10b 1
+!s100 IN??=`eA[nS?5<X01jGeX2
+Ib8loPZQ0L`;Q[cO?_U[8a3
+!i103 1
+S1
+R0
+R18
+R19
+R20
+L0 18
+R9
+R10
+R22
+R23
+!s101 -O0
+!i113 1
+R13
+R14
+vcontroller
+R1
+R15
+DXx4 work 18 controller_sv_unit 0 22 `H62dS[TCfGl1A@PGoWkQ1
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 QB9b[CB5]IC>Z6;dW[Yo^3
+IHZ71?56EB40d>L<Qma<?N3
+!s105 controller_sv_unit
+S1
+R0
+Z24 w1527486933
+Z25 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv
+Z26 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv
+L0 22
+R9
+R10
+Z27 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv|
+Z28 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/controller.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+Xcontroller_sv_unit
+R1
+R15
+V`H62dS[TCfGl1A@PGoWkQ1
+r1
+!s85 0
+31
+!i10b 1
+!s100 CH4oWMEUm@2U4kfZYFPfK1
+I`H62dS[TCfGl1A@PGoWkQ1
+!i103 1
+S1
+R0
+R24
+R25
+R26
+R21
+R9
+R10
+R27
+R28
+!s101 -O0
+!i113 1
+R13
+R14
+vdata_mem
+R1
+R2
+!i10b 1
+!s100 b?ETcjJEM8:D8dCT>;:GI3
+IQR5W>VU;jFE8jKL]Y46>V2
+R3
+Z29 !s105 data_mem_sv_unit
+S1
+R0
+Z30 w1527458209
+Z31 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv
+Z32 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv
+R8
+R9
+r1
+!s85 0
+31
+R10
+Z33 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv|
+Z34 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/data_mem.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+Xdefinitions
+R1
+Z35 !s110 1527488974
+!i10b 1
+!s100 ?E`nlM[mQ9:76YbWkP@RS1
+I3WPKZBNDmHoDGMU;mW1D52
+V3WPKZBNDmHoDGMU;mW1D52
+S1
+R0
+w1527452752
+8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv
+FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv
+L0 13
+R9
+r1
+!s85 0
+31
+Z36 !s108 1527488974.000000
+!s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/definitions.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vincrementor
+R1
+R2
+!i10b 1
+!s100 =NEfz<J8Njf:0FCF9aB>k3
+IjL`07e2Jl39eaf8Un3m;80
+R3
+!s105 incrementor_sv_unit
+S1
+R0
+w1526962819
+8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv
+FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv
+L0 15
+R9
+r1
+!s85 0
+31
+R36
+!s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/incrementor.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vinstr_fetch
+R1
+R2
+!i10b 1
+!s100 fPOIaiZ<FGmjE>A@Abk0b0
+I1l:zHAb8nWIJe2Of>oUgG2
+R3
+Z37 !s105 instr_fetch_sv_unit
+S1
+R0
+Z38 w1527474816
+Z39 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv
+Z40 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv
+R21
+R9
+r1
+!s85 0
+31
+R10
+Z41 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv|
+Z42 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_fetch.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vinstr_rom
+R1
+R2
+!i10b 1
+!s100 aLlcCoBW:P3aR2]kQb;JC2
+I9AM:mR6CH2e55Ll066[gV3
+R3
+Z43 !s105 instr_rom_sv_unit
+S1
+R0
+Z44 w1527463193
+Z45 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv
+Z46 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv
+L0 16
+R9
+r1
+!s85 0
+31
+R10
+Z47 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv|
+Z48 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/instr_rom.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vmux_2
+R1
+R2
+!i10b 1
+!s100 JeFY[;WPP7^nhQYI@f?<I2
+IG2Y5RM3ZM=GMIc`@RiBXe0
+R3
+!s105 mux_2_sv_unit
+S1
+R0
+w1527306167
+8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv
+FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv
+Z49 L0 17
+R9
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_2.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vmux_4
+R1
+R2
+!i10b 1
+!s100 oA2X[[<8Gn?eGIIHj;Ddi0
+IQT9F`RhgHC3K_2fcz`<PQ1
+R3
+!s105 mux_4_sv_unit
+S1
+R0
+w1527306163
+8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
+FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv
+R8
+R9
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/mux_4.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vpc
+R1
+R35
+!i10b 1
+!s100 k_nF:MmOa=Jo4?iHnE:[43
+IUK[F6?<^;>jPnRV;l441k0
+R3
+!s105 pc_sv_unit
+S1
+R0
+w1527483343
+8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv
+FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv
+R49
+R9
+r1
+!s85 0
+31
+R36
+!s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/pc.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vreg_file
+R1
+R35
+!i10b 1
+!s100 ZEBR]c_d_3?C;kN6HL;hU0
+IYARRO?7O>4M<iSNMV_no>3
+R3
+Z50 !s105 reg_file_sv_unit
+S1
+R0
+Z51 w1527471530
+Z52 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv
+Z53 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv
+Z54 L0 21
+R9
+r1
+!s85 0
+31
+R36
+Z55 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv|
+Z56 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/reg_file.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_accumulator
+R1
+R2
+!i10b 1
+!s100 dF=3Zi>8YEHbUR63m[Qbc1
+I5Re0LX>>]XIFYnQHP3>]13
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 55
+R9
+r1
+!s85 0
+31
+R10
+R11
+R12
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_alu
+R1
+R15
+R16
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 J9mVL0nLeYF<WdQji3:>A3
+Idm27o>JYhoB8jT20fj^YN0
+R17
+S1
+R0
+R18
+R19
+R20
+L0 69
+R9
+R10
+R22
+R23
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_data_mem
+R1
+R2
+!i10b 1
+!s100 fhh^C^;]c=B2HcYmNEU_C3
+I=Af5G9REzFBZ8mg[Z^D<d3
+R3
+R29
+S1
+R0
+R30
+R31
+R32
+L0 59
+R9
+r1
+!s85 0
+31
+R10
+R33
+R34
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_instr_fetch
+R1
+R2
+!i10b 1
+!s100 GT6=XhJ[Z7UM6^2<fIKAk1
+I7nocXDf8o3L=Cn`2LOZ`h0
+R3
+R37
+S1
+R0
+R38
+R39
+R40
+L0 63
+R9
+r1
+!s85 0
+31
+R10
+R41
+R42
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_instr_rom
+R1
+R2
+!i10b 1
+!s100 =R:JL?AP8?@DSZkAP66GX2
+IWzUkRBMWlILRM4n^88DR33
+R3
+R43
+S1
+R0
+R44
+R45
+R46
+L0 35
+R9
+r1
+!s85 0
+31
+R10
+R47
+R48
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_reg_file
+R1
+R35
+!i10b 1
+!s100 FS6cMYcL=hciS[OeQlI[M3
+IDE0nV[K9Z`H`ROEG]<EZT0
+R3
+R50
+S1
+R0
+R51
+R52
+R53
+L0 45
+R9
+r1
+!s85 0
+31
+R36
+R55
+R56
+!s101 -O0
+!i113 1
+R13
+R14
+vtb_top
+R1
+R15
+Z57 DXx4 work 17 top_level_sv_unit 0 22 L@VOSLkhV19cYIK>J1Idh1
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 AdDT7>M^V4XiPI9eGdIb>3
+Im9S6?Lne>P=?m=A=H<aS22
+Z58 !s105 top_level_sv_unit
+S1
+R0
+Z59 w1527488146
+Z60 8C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv
+Z61 FC:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv
+L0 137
+R9
+R10
+Z62 !s107 C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv|
+Z63 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project|C:/Users/anda0/Documents/GitHub/EnDMe-Processor/Project/top_level.sv|
+!s101 -O0
+!i113 1
+R13
+R14
+vtop_level
+R1
+R15
+R57
+R3
+r1
+!s85 0
+31
+!i10b 1
+!s100 =CRYefUz;YhIOkW=efYQ:3
+IT8Qe`P?GL`DG]YY:f@PYL3
+R58
+S1
+R0
+R59
+R60
+R61
+R54
+R9
+R10
+R62
+R63
+!s101 -O0
+!i113 1
+R13
+R14
+Xtop_level_sv_unit
+R1
+R15
+VL@VOSLkhV19cYIK>J1Idh1
+r1
+!s85 0
+31
+!i10b 1
+!s100 zZMLoDBJl3GQJdzNDz5jg3
+IL@VOSLkhV19cYIK>J1Idh1
+!i103 1
+S1
+R0
+R59
+R60
+R61
+R8
+R9
+R10
+R62
+R63
+!s101 -O0
+!i113 1
+R13
+R14

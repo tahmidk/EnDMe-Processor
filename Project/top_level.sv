@@ -13,13 +13,16 @@
  *		RESET - the control wire that resets pc to 0 if high (1-bit)
  *
  *	[Output]
- *		None - check that data_mem has correct outputs
+ *		done - expressed when PC reaches end of program
  ---------------------------------------------------------------------*/
+
+import definitions::*;
  
- module top_level(
+module top_level(
 	input CLK,
-	input RESET
- );
+	input RESET,
+	output reg done
+);
  
 	// Module wires/BUS
 	wire [7:0] dst_data;
@@ -30,6 +33,14 @@
 	wire [7:0] alu_output;
 	wire [7:0] mem_output;
 	
+	// Parse instruction
+	wire [7:0] imm;
+	wire typ;
+	wire [3:0] op;
+	assign imm = instruction[7:0];
+	assign typ = instruction[8];
+	assign op = instruction[7:4];
+	
 	// Control wires
 	wire ctrl_branch;
 	wire ctrl_jump;
@@ -39,41 +50,51 @@
 	wire [1:0] ctrl_accDat;
 	wire ctrl_accWr;
 	wire [2:0] ctrl_alu;
+	
+	// Done flag
+	initial done <= 0;
+	always @(posedge CLK) begin
+		// Done when no more instructions
+		if(^instruction === 1'bX && instr_addr_bus != 16'hffff)
+			done <= 1;
+	end
  
 	// Initialize instruction fetch
+	wire accRslt;
+	assign accRslt = (acc_output == 1);
 	instr_fetch IF(
-		.CLK(CKL),
+		.CLK(CLK),
 		.dst_in(dst_data),
 		.reset_ctrl(RESET),
 		.br_ctrl(ctrl_branch),
 		.jmp_ctrl(ctrl_jump),
-		.zero_ctrl(ctrl_zero),
+		.accdata_in(accRslt),
 		.instr_addr(instr_addr_bus)
 	);
 	
 	// Initialize instruction ROM
 	instr_rom IROM(
 		.addr_in(instr_addr_bus),
-		.instr_out(instuction)
+		.instr_out(instruction)
 	);
 	
 	// Initialize accumulator
 	accumulator ACC(
-		.CLK(CLK),
-		.data_imm_in(instruction[7:0]),
+		.data_imm_in(imm),
 		.data_reg_in(reg_output),
 		.data_mem_in(mem_output),
 		.data_alu_in(alu_output),
 		.data_ctrl(ctrl_accDat),
-		.accwrite_ctrl(ctrl_accWr),
+		.write_ctrl(ctrl_accWr),
 		.acc_out(acc_output)
 	);
 	
 	// Initialize control unit
 	controller CTRL(
-		.TYP(instruction[8]),
-		.OP(instruction[7:4]),
+		.TYP(typ),
+		.OP(op),
 		.br_ctrl(ctrl_branch),
+		.jmp_ctrl(ctrl_jump),
 		.regwrite_ctrl(ctrl_regWr),
 		.aluop_ctrl(ctrl_alu),
 		.memwrite_ctrl(ctrl_memWr),
@@ -88,7 +109,7 @@
 		.data_in(acc_output),
 		.write_ctrl(ctrl_regWr),
 		.data_out(reg_output),
-		.dst_out(dst_wire)
+		.dst_out(dst_data)
 	);
 	
 	// Initialize ALU
@@ -96,8 +117,7 @@
 		.reg_in(reg_output),
 		.acc_in(acc_output),
 		.op_ctrl(ctrl_alu),
-		.rslt_out(alu_output),
-		.zero_out(ctrl_zero)
+		.rslt_out(alu_output)
 	);
 	
 	// Initialize data memory
@@ -110,4 +130,42 @@
 	);
  
  
- endmodule
+endmodule 
+
+
+// Test module for top level
+module tb_top();
+
+	reg CLK;
+	reg RESET;
+	wire done;
+	
+	integer i;
+
+	always #10 CLK = ~CLK;	
+	initial begin
+		CLK <= 0;
+		RESET <= 0;
+		
+		// Let it run until it's done
+		wait(done);
+		
+		// Print contents of the register file
+		$display("Reg Data:");
+		for (i=0; i < 16; i=i+1)
+			$display("%d:%d",i,TOP.RF.core[i]);
+		
+		// Print Contents of Mem File
+		// Not Yet
+		
+		#10 $stop;
+	end
+	
+	// Initialize top level module
+	top_level TOP(
+		.CLK(CLK),
+		.RESET(RESET),
+		.done(done)
+	);
+
+endmodule
