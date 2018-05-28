@@ -1,0 +1,385 @@
+9. Program: encrypter
+// ARM assembly 8-tap LFSR
+// r0 = working register (variable), the thing we need for every iteration(states for LFSR)
+// r1 = tap pattern (fixed for a given message)
+//   	  legitimate (hex) values are: e1, d4, c6, b8,
+//                                     b4, b2, fa, f3
+// r2 = parity computation (variable)
+// r3 = seed (fixed by first line of program)
+// r5 = state counter -- should hit 2**N-1 for N taps, used to indicate the location to read, initially 0
+// r6 = indicate the index of memory space to write to, start from 64
+// r7 = p, the number of spaces need to append before the message
+// r8 = p + 40
+save #41	// Get P from memory location 41
+store $r7 // r7 = 41 now
+lb $r7    // lb : $acc = M[$reg]
+store $r7
+
+save #42	// Get tap pattern
+store $r1
+lb $r1
+store $r1
+
+save #43	// Get seed from memory location 43
+store $r0
+lb $r0		// store seed in r0 and r3
+store $r3
+store $r0
+
+
+save #0        	// counter
+store $r5
+
+save #64	//the counter to keep track memory location writing to
+store $r6
+
+save #40
+add $r7
+store $r8          // r8 = r7 + 40
+//end of values initiallization
+
+
+
+
+//Every loop encode one character, this loop run 64 times to encode all characters to 64-127
+loop1:	// start
+//First, check if r5 > r8, if so perform encode_space
+save encode_space
+store dst
+put $r5
+gtr $r8  //r5>r8?
+btr     //if so jump to encode_space
+
+//Then,check if r5> r7, if so perform encode_char
+save encode_char
+store dst
+put $r5
+gtr $r7 // r5 > r7?
+btr      // if so jump to encode_char
+
+//If none of above is the case, perform encode_space
+//encode_space: takes a space and xor it with r1, then write back to memory at memory 64-127
+encode_space:
+save #32
+xor $r0
+sb $r6     //takes a space and xor it with r0, then write back to memory
+jmp continue
+
+encode_char:
+//read a value from memory and xor it with r0, then write back to memory
+put $r5
+xor $r0
+sb $r6
+jmp continue
+
+
+// end, the code above finish the writting to memory, following code are the engine of LFSR and update the r0
+continue:
+
+put $r1		// pass only the 4 tap values
+and $r0
+store $r2
+
+save #1	// left-shift pattern
+store $r4
+put $r0
+srl $r4
+store $r0
+
+xor r2, r2, lsr #4	// find the parity in 3 steps
+xor r2, r2, lsr #2
+xor r2, r2, lsr #1
+
+save #1          	// want just the parity bit (LSB)
+store $t1
+put $r2
+and $t1
+store $r2
+
+put $r0		// bring in parity to LSB
+add $r2
+store $r0
+
+save 255	// keep just the lower 8 bits
+and $r0
+store $r0
+//End of LFSR engine, by here, we finish updating r0
+
+
+
+//Following code are to update pointers of r5 and r6
+save #1	// increment counters of r5 and r6
+add $r5
+store $r5
+
+save #1
+add $r6
+store $r6
+
+save done	//done if r6 reach 127
+store dst
+save #126
+sub $r6            //if r6 = 127, this subtraction will give us 1, which can be feed to btr
+btr
+jmp loop1
+done:
+
+10/11. Decrypter
+//First, explicitly store all the possible patterns to some memory place( memory place 128-136)
+//possible patterns are e1, d4, c6, b8, b4, b2, fa, f3
+save #128
+lb $r0
+save #225 //0xe1
+sb $r0
+
+save #129
+lb $r0
+save #212 //0xd4
+sb $r0
+
+save #130
+lb $r0
+save #198 //0xc6
+sb $r0
+
+save #131
+lb $r0
+save #184 //0xb8
+sb $r0
+
+save #132
+lb $r0
+save #180 //0xb4
+sb $r0
+
+save #133
+lb $r0
+save #178 //0xb2
+sb $r0
+
+save #134
+lb $r0
+save #250 //0xfa
+sb $r0
+
+save #135
+lb $r0
+save #243 //0xf3
+sb $r0
+
+
+
+
+// Let Si represent state i of the LFSR sequence
+find_tap_and_seed:
+//take the first byte of encrypt message(locate at memory [64])
+//and xor it with space character to get the seed
+save #64
+store $r0  //put 64 into r0
+lb $r0     //get the value from memory[64] on accumulator
+store $r1  //put mem[64] into r1
+save #32   //
+xor $r1    //xor it with 32 to get the first state(seed), get the seed on accumulator
+store $r3  //store the seed into r3 and r0
+store $r0
+
+// r0 = working register (variable)
+// r1 = tap pattern (fixed for a given message)
+//   	  legitimate (hex) values are: e1, d4, c6, b8,
+//                                     b4, b2, fa, f3
+// r2 = parity computation (variable)
+// r3 = seed (fixed by first line of program)
+// r4 = pattern counter, indicating which pattern we are testing, start from 128(where the first pattern is stored)
+// r5 = state counter, = 0 in the begining
+// r6 = a counter to keep track of index of memory location, initially 64
+// r7 = exit code, if 1 means all good
+
+//initialize r4 to 128
+save #128
+store $r4
+
+
+// Try every possible patterns to determined what is the correct pattern
+// Here perform a encoding with tap pattern 0xe1
+// Initialize  r0,r1,r3,r5,r6,r7
+// load the tap pattern from what is in mem[r4] and store it into r1
+
+lb $r4
+store r1 //tap pattern
+
+save #0        	     // counter
+lb r5
+save #64             // mem counter
+lb r6
+save #1              // exit code
+store r7
+
+
+try_pattern:
+put r1
+and r0             // pass only the 4 tap values
+store r2
+
+check_space:
+//takes a space and xor it with r0
+save #32
+xor r0
+//compare it with what is in mem[64]
+cmp r6
+//if match, continue
+btr continue
+//if not, set r7 = 0(not the pattern we want)
+save #0
+store r7		//give exit code 0 if not true
+jmp done2
+
+continue:
+save #1
+store r4
+put r0
+srl r4
+store r0           	// left-shift pattern
+
+
+xor r2, r2, lsr #4 	// find the parity in 3 steps
+xor r2, r2, lsr #2
+xor r2, r2, lsr #1
+
+save #1          	// want just the parity bit (LSB)
+store t1
+put r2
+and t1
+store r2
+
+put r0		// bring in parity to LSB
+add r2
+store r0
+
+save 255	// keep just the lower 8 bits
+and r0
+store r0
+
+save #1	// increment counters of r5 and r6
+add r5
+store r5
+
+save #1	// increment counters of r6
+add r6
+store r6
+save #8	// done if r5 reach 8
+cmp r5
+btr done2:
+//
+
+
+
+done2:
+//check r7, if r7 is still 1, it means we successfully find the pattern
+save #1
+cmp $r7
+btr done_find_tap_and_seed
+//else, jump back to try_pattern, but increment value of $r4, if r4 value is greater than 135, it means no match pattern and that is sad
+save #1
+add $r4
+store $r4
+jmp try_pattern
+
+
+
+//If this line is reached, it means we successfully find the pattern, which is stored in $r4
+//and we also have seed at $r3, ready to do some decrypting!
+
+done_find_tap_and_seed:
+// r0 = working register (variable), the thing we need for every iteration(states for LFSR)
+// r1 = tap pattern (fixed for a given message)
+//   	  legitimate (hex) values are: e1, d4, c6, b8,
+//                                     b4, b2, fa, f3
+// r2 = parity computation (variable)
+// r3 = seed (fixed by first line of program)
+// r5 = state counter -- should hit 2**N-1 for N taps, used to indicate the location to read, initially 0
+// r6 = indicate the index of memory space to write to, start from 0
+// r7 = state counter for where to read, start from 64
+// r8 = indicate whether begin to write to, initially 0
+//initialize r0,r1,r3,r5,r6,r7
+put $r4
+store $r1
+put $r3
+store $r0
+save #0
+store $r5
+store $r6
+store $r8
+save #64
+store $r7
+// end of initiallization
+
+
+decipher:
+//start of reading and writting
+//see if r8 is set(begin to write to memory), if so perform decode a char
+save #1
+cmp $r8
+btr decoding
+//else decipher a char and see if it is space, if so jump to run_lfsr, else perform decode a char
+lb $r7
+xor $r0
+store $r9
+// see if it is space
+save #32
+cmp $r9
+btr run_lfsr
+save #1
+store $r8
+jmp decoding
+decoding:
+//decipher a char and put it at MEM[r6], then increment r6
+lb $r7
+xor $r0
+sb $r6
+
+save #1
+add $r6
+store $r6
+jmp run_lfsr
+
+
+//start of lfsr engine
+run_lfsr:
+put $r1		// pass only the 4 tap values
+and $r0
+store $r2
+
+save #1	// left-shift pattern
+store $r4
+put $r0
+srl $r4
+store $r0    
+
+xor r2, r2, lsr #4	// find the parity in 3 steps
+xor r2, r2, lsr #2
+xor r2, r2, lsr #1
+
+save #1          	// want just the parity bit (LSB)
+store $t1
+put $r2
+and $t1
+store $r2
+
+put $r0		// bring in parity to LSB
+add $r2
+store $r0
+
+save 255	// keep just the lower 8 bits
+and $r0
+store $r0
+//end of lfsr engine
+
+//increment r7 by 1, if r7 reach 127, break and exist
+save #1
+add $r7
+store $r7
+
+save #127
+cmp $r7
+btr done3
+jmp decipher
