@@ -54,7 +54,8 @@ module top_level(
 	// Done flag
 	initial done <= 0;
 	always @(posedge CLK) begin
-		if(^instruction === 1'bX)
+		// Done when no more instructions
+		if(^instruction === 1'bX && instr_addr_bus != 16'hffff)
 			done <= 1;
 	end
  
@@ -62,7 +63,7 @@ module top_level(
 	wire accRslt;
 	assign accRslt = (acc_output == 1);
 	instr_fetch IF(
-		.CLK(CKL),
+		.CLK(CLK),
 		.dst_in(dst_data),
 		.reset_ctrl(RESET),
 		.br_ctrl(ctrl_branch),
@@ -74,7 +75,7 @@ module top_level(
 	// Initialize instruction ROM
 	instr_rom IROM(
 		.addr_in(instr_addr_bus),
-		.instr_out(instuction)
+		.instr_out(instruction)
 	);
 	
 	// Initialize accumulator
@@ -84,7 +85,7 @@ module top_level(
 		.data_mem_in(mem_output),
 		.data_alu_in(alu_output),
 		.data_ctrl(ctrl_accDat),
-		.accwrite_ctrl(ctrl_accWr),
+		.write_ctrl(ctrl_accWr),
 		.acc_out(acc_output)
 	);
 	
@@ -108,7 +109,7 @@ module top_level(
 		.data_in(acc_output),
 		.write_ctrl(ctrl_regWr),
 		.data_out(reg_output),
-		.dst_out(dst_wire)
+		.dst_out(dst_data)
 	);
 	
 	// Initialize ALU
@@ -138,34 +139,33 @@ module tb_top();
 	reg CLK;
 	reg RESET;
 	wire done;
+	
+	integer i;
 
-	always #5 CLK = ~CLK;	
+	always #10 CLK = ~CLK;	
 	initial begin
 		CLK <= 0;
 		RESET <= 0;
-		#100 $stop;
+		
+		// Let it run until it's done
+		wait(done);
+		
+		// Print contents of the register file
+		$display("Reg Data:");
+		for (i=0; i < 16; i=i+1)
+			$display("%d:%d",i,TOP.RF.core[i]);
+		
+		// Print Contents of Mem File
+		// Not Yet
+		
+		#10 $stop;
 	end
 	
+	// Initialize top level module
 	top_level TOP(
 		.CLK(CLK),
 		.RESET(RESET),
 		.done(done)
 	);
-	
-	// Stop when no more instructions
-	always begin
-		if(done) begin
-			// Print Contents of Reg File
-			integer i;
-			$display("Reg Data:");
-			for (i=0; i < 16; i=i+1)
-				$display("%d:%d",i,TOP.RF.core[i]);
-			
-			// Print Contents of Mem File
-			// Not Yet
-			
-			#10 $stop;
-		end
-	end
 
 endmodule

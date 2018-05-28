@@ -34,172 +34,171 @@ module controller(
 	// Enumerate op code into an instruction 
 	Instr_O instr;
 	assign instr = Instr_O'(OP);
-
-	always_comb
-		begin
-			// Temporary defaults
+	
+	always_comb begin
+		// Temporary defaults
+		br_ctrl <= 1'b0;
+		jmp_ctrl <= 1'b0;
+		regwrite_ctrl <= 1'b0;
+		aluop_ctrl <= Add;
+		memwrite_ctrl <= 1'b0;
+		accdata_ctrl <= 2'b00;
+		accwrite_ctrl <= 1'b0;
+	
+		// Instruction is M-type save
+		if(TYP == 1) begin 
+			// $acc = #imm
 			br_ctrl <= 1'b0;
 			jmp_ctrl <= 1'b0;
 			regwrite_ctrl <= 1'b0;
 			aluop_ctrl <= Add;
 			memwrite_ctrl <= 1'b0;
 			accdata_ctrl <= 2'b00;
-			accwrite_ctrl <= 1'b0;
-		
-			// Instruction is M-type save
-			if(TYP == 1) begin 
-				// $acc = #imm
-				br_ctrl <= 1'b0;
-				jmp_ctrl <= 1'b0;
-				regwrite_ctrl <= 1'b0;
-				aluop_ctrl <= Add;
-				memwrite_ctrl <= 1'b0;
-				accdata_ctrl <= 2'b00;
-				accwrite_ctrl <= 1'b1;
-			end
-			// Instruction is O-type operation
-			else begin
-				case(instr)
-					// $reg = $acc
-					STORE: begin	
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b1;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b00;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = M[$reg]
-					LB: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b10;
-						accwrite_ctrl <= 1'b1;
-					end
-					// M[$reg] = $acc
-					SB: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b1;
-						accdata_ctrl <= 2'b00;
-						accwrite_ctrl <= 1'b0;
-					end
-					// $acc = $reg
-					PUT: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b01;
-						accwrite_ctrl <= 1'b1;
-					end
-					BTR:begin
-						br_ctrl <= 1'b1;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b00;
-						accwrite_ctrl <= 1'b0;
-					end
-					JMP: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b1;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b00;
-						accwrite_ctrl <= 1'b0;
-					end
-					// $acc = $reg + $acc
-					ADD: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Add;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = $reg - $acc
-					SUB: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Sub;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = $acc & $reg
-					AND: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= And;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = $acc & $reg
-					XOR: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Xor;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = $acc << $reg
-					SFL: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Sfl;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = $acc >> $reg
-					SFR: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Sfr;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = ($acc == $reg) ? 1 : 0
-					CMP: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Equ;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-					// $acc = ($acc > $reg) ? 1 : 0
-					GTR: begin
-						br_ctrl <= 1'b0;
-						jmp_ctrl <= 1'b0;
-						regwrite_ctrl <= 1'b0;
-						aluop_ctrl <= Gtr;
-						memwrite_ctrl <= 1'b0;
-						accdata_ctrl <= 2'b11;
-						accwrite_ctrl <= 1'b1;
-					end
-				endcase
-			end
+			accwrite_ctrl <= 1'b1;
 		end
+		// Instruction is O-type operation
+		else begin
+			case(instr)
+				// $reg = $acc
+				STORE: begin	
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b1;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b00;
+					accwrite_ctrl <= 1'b0;
+				end
+				// $acc = M[$reg]
+				LB: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b10;
+					accwrite_ctrl <= 1'b1;
+				end
+				// M[$reg] = $acc
+				SB: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b1;
+					accdata_ctrl <= 2'b00;
+					accwrite_ctrl <= 1'b0;
+				end
+				// $acc = $reg
+				PUT: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b01;
+					accwrite_ctrl <= 1'b1;
+				end
+				BTR:begin
+					br_ctrl <= 1'b1;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b00;
+					accwrite_ctrl <= 1'b0;
+				end
+				JMP: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b1;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b00;
+					accwrite_ctrl <= 1'b0;
+				end
+				// $acc = $reg + $acc
+				ADD: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Add;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = $reg - $acc
+				SUB: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Sub;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = $acc & $reg
+				AND: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= And;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = $acc & $reg
+				XOR: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Xor;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = $acc << $reg
+				SFL: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Sfl;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = $acc >> $reg
+				SFR: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Sfr;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = ($acc == $reg) ? 1 : 0
+				CMP: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Equ;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+				// $acc = ($acc > $reg) ? 1 : 0
+				GTR: begin
+					br_ctrl <= 1'b0;
+					jmp_ctrl <= 1'b0;
+					regwrite_ctrl <= 1'b0;
+					aluop_ctrl <= Gtr;
+					memwrite_ctrl <= 1'b0;
+					accdata_ctrl <= 2'b11;
+					accwrite_ctrl <= 1'b1;
+				end
+			endcase
+		end
+	end
 
 endmodule

@@ -50,7 +50,7 @@ module instr_fetch(
 	);
 	
 	// Next PC source selector MUX
-	assign br_sel = (br_ctrl & accdata_in) | jmp_ctrl;
+	assign br_sel = (br_ctrl & (accdata_in == 1'bx ? 0 : accdata_in)) | jmp_ctrl;
 	mux_2 mux_br(
 		.din_0(pc_inc),
 		.din_1(pc_br),

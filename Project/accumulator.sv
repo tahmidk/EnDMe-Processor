@@ -22,17 +22,17 @@ module accumulator(
 	input [7:0] data_mem_in,
 	input [7:0] data_alu_in,
 	input [1:0] data_ctrl,
-	input accwrite_ctrl,
+	input write_ctrl,
 	output reg [7:0] acc_out
 );
 
 	// Accumulator's data
-	logic [7:0] acc_data;
+	reg [7:0] acc_data;
 	
 	initial acc_data = 8'bxxxxxxxx;
 
 	// Accumulator is basically a MUX with specific control signals
-	mux_4 mux_din(
+	mux_4 #(8) mux_din(
 		.din_0(data_imm_in),
 		.din_1(data_reg_in),
 		.din_2(data_mem_in),
@@ -42,9 +42,9 @@ module accumulator(
 	);
 	
 	// Write only if the write control is expressed
-	always_latch begin
-		if(accwrite_ctrl) begin
-			acc_out = acc_data;
+	always @(posedge write_ctrl or data_ctrl) begin
+		if(write_ctrl) begin
+			acc_out <= acc_data;
 		end
 	end
 
@@ -73,7 +73,7 @@ module tb_accumulator();
 		.data_mem_in(din_mem),
 		.data_alu_in(din_alu),
 		.data_ctrl(data_ctrl),
-		.accwrite_ctrl(accwrite_ctrl),
+		.write_ctrl(accwrite_ctrl),
 		.acc_out(acc_out)
 	);
 	
