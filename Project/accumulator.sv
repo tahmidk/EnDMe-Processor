@@ -42,7 +42,7 @@ module accumulator(
 	);
 	
 	// Write only if the write control is expressed
-	always @(posedge write_ctrl) begin
+	always @(write_ctrl or data_ctrl) begin
 		if(write_ctrl) begin
 			#1 acc_out <= acc_data;
 		end

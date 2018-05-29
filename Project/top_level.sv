@@ -142,7 +142,7 @@ module tb_top();
 	
 	integer i;
 
-	always #10 CLK = ~CLK;	
+	always #10 CLK = ~CLK;
 	initial begin
 		CLK <= 0;
 		RESET <= 0;
