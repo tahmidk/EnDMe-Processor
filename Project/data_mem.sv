@@ -32,9 +32,10 @@ module data_mem (
 		$readmemh("mem_init.dat", mem_file);
 	integer i;
 	initial begin
-		$display("rdata:");
-		for (i=0; i < 20; i=i+1)
-			$display("%d:%d",i,mem_file[i]);
+		$display("Memory File:");
+		for(i=0; i < 2**8; i=i+1)
+			if(^mem_file[i] != 1'bx)
+				$display("%d:%d",i,mem_file[i]);
 	end
 	
 	// Read data from memory immediately
