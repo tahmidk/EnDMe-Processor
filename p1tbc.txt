@@ -1,0 +1,98 @@
+save #41
+store $r7
+lb $r7
+store $r7
+save #42
+store $r1
+lb $r1
+store $r1
+save #43
+store $r9
+lb $r9
+store $r3
+store $r9
+save #0
+store $r5
+save #64
+store $r6
+save #40
+add $r7
+store $r8
+loop1:
+save encode_space
+store $dst
+put $r5
+gtr $r8
+btr
+save encode_char
+store $dst
+put $r5
+gtr $r7
+btr
+encode_space:
+save #32
+xor $r9
+sb $r6
+save lfsr
+store $dst
+jmp
+encode_char:
+put $r5
+xor $r9
+sb $r6
+save lfsr
+store $dst
+jmp
+lfsr:
+put $r1
+and $r9
+store $r2
+save #1
+store $r4
+put $r9
+sfl $r4
+store $r9
+save #4
+store $r10
+put $r2
+xor $r2
+sfl $r10
+store $r2
+save #2
+store $r10
+put $r2
+xor $r2
+sfl $r10
+store $r2
+save #1
+store $r10
+put $r2
+xor $r2
+sfl $r10
+store $r2
+save #1
+store $r10
+put $r2
+and $r10
+store $r2
+put $r9
+add $r2
+store $r9
+save #255
+and $r9
+store $r9
+save #1
+add $r5
+store $r5
+save #1
+add $r6
+store $r6
+save done
+store $dst
+save #126
+sub $r6
+btr
+save loop1
+store $dst
+jmp
+done:

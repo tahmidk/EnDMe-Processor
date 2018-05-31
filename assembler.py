@@ -3,17 +3,17 @@
 # [Example:]
 # python assembler.py program_9.txt machine_code.txt
 
-# [Description:]	
+# [Description:]
 # Assembler for the EnDMe ISA
 
-# [Authors:]	
+# [Authors:]
 # Tahmid Khan
 # Shengyuan Lin
 
 # [Notes:]
 # In input assembly file, please note the following:
 #	1) Put labels on the same line as an instruction
-#		Good -	loop:	
+#		Good -	loop:
 #				instruction
 #				...
 #		----------------------------------------------
@@ -79,7 +79,7 @@ instructions = []	# A list of all the instructions
 labels = dict()		# A dict mapping all labels to the instr # after them
 
 # Script
-# Check that both command line arguments for input and output.txt are given 
+# Check that both command line arguments for input and output.txt are given
 if not len(sys.argv) == 2:
 	print("Expected 1 argument (assembly file) but got %d" \
 		% (len(sys.argv) - 1))
@@ -87,7 +87,8 @@ else:
 	# Initialize input and output files
 	assembly_in = open(sys.argv[1], 'r')
 	machine_code_out = open("machine_code.bin", 'w')
-
+	# Used to see decompiled op_code
+	assembly_code_out = open("assembly_code.txt", 'w')
 	# Fetch all instructions and labels and initialize the instructions and
 	# labels data structures
 	for line in assembly_in:
@@ -124,6 +125,7 @@ else:
 
 				instr_mc = M_TYPE + '{0:08b}'.format(imm % 256)
 				machine_code_out.write(instr_mc + '\n')
+				assembly_code_out.write('save ' + '#' + str(imm) + '\n')
 			# Argument is a label
 			else:
 				label = instr[1]
@@ -134,6 +136,7 @@ else:
 				label_ref = labels[label]
 				instr_mc = M_TYPE + '{0:08b}'.format(label_ref % 256)
 				machine_code_out.write(instr_mc + '\n')
+				assembly_code_out.write('save ' + '#' + str(label_ref) + '\n')
 
 		# Detect O-type instruction
 		elif instr[0] in op_code:
@@ -153,9 +156,11 @@ else:
 			instr_mc = O_TYPE + '{0:04b}'.format(op) + \
 				'{0:04b}'.format(reg)
 			machine_code_out.write(instr_mc + '\n')
-
+			if len(instr) == 2:
+				assembly_code_out.write(instr[0] + ' ' + str(instr[1]) + '\n')
+			else:
+				assembly_code_out.write(instr[0] + ' ' + '\n')
 	# Close files
 	assembly_in.close()
 	machine_code_out.close()
-
-
+	assembly_code_out.close()
