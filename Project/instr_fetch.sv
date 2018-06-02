@@ -28,18 +28,20 @@ module instr_fetch(
 );
 
 	wire[15:0] pc_br;		// Wire containing branched pc to 2:1 MUX
-	wire[15:0] pc_inc;	// Wire from incrementor to 2:1 MUX
-	wire[15:0] pc_next;	// Wire from 2:1 MUX to pc
-	wire br_sel;			// Branch selector
-
+	wire[15:0] pc_inc;	// Incremented pc
+	logic br_sel;			// Branch selector
+	
 	// The branch address is calculated absolutely
 	assign pc_br = {pc_inc[15:8], dst_in};
 	
 	// Initialize and wire the program counter module
+	assign br_sel = (br_ctrl & (^accdata_in === 1'bx ? 0 : accdata_in)) | jmp_ctrl;
 	pc PC(
 		.CLK(CLK), 
 		.reset_ctrl(reset_ctrl),
-		.pcnext_in(pc_next),
+		.pcnext_in(pc_inc),
+		.pcbr_in(pc_br),
+		.br_ctrl(br_sel),
 		.pc_out(instr_addr)
 	);
 		
@@ -47,15 +49,6 @@ module instr_fetch(
 	incrementor INC(
 		.a(instr_addr),
 		.a_inc(pc_inc)
-	);
-	
-	// Next PC source selector MUX
-	assign br_sel = (br_ctrl & (accdata_in == 1'bx ? 0 : accdata_in)) | jmp_ctrl;
-	mux_2 mux_br(
-		.din_0(pc_inc),
-		.din_1(pc_br),
-		.sel(br_sel),
-		.mux_out(pc_next)
 	);
 
 endmodule

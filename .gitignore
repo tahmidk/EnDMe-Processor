@@ -4,3 +4,4 @@
 /Project/simulation/modelsim/*
 !*/Project/simulation/modelsim/machine_code.bin
 !*/Project/simulation/modelsim/mem_init.dat
+*.rpt
