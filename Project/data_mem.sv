@@ -34,8 +34,7 @@ module data_mem (
 	initial begin
 		$display("Memory File:");
 		for(i=0; i < 2**8; i=i+1)
-			if(^mem_file[i] != 1'bx)
-				$display("%d:%d",i,mem_file[i]);
+			$display("%d:%d",i,mem_file[i]);
 	end
 	
 	// Read data from memory immediately
