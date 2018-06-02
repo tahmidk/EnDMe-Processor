@@ -39,71 +39,63 @@ store $r8
 # end of initiallization
 
 loop1:
-save encode_space
-store $dst
-put $r5
-gtr $r8
-btr
 
-save encode_char
-store $dst
-put $r5
-gtr $r7
-btr
 
 encode_space:
 save #32
 xor $r9
 sb $r6
-save lfsr
-store $dst
-jmp
 
-encode_char:
-lb $r11
-xor $r9
-sb $r6
-
-save #1
-add $r11
-store $r11
 
 
 lfsr:
+#and r2, r1, r0
 put $r1
 and $r9
 store $r2
+
+#lsl r0, r0, #1
 save #1
 store $r4
 put $r9
 sfl $r4
 store $r9
+
+#eor r2, r2, lsr #4
 save #4
-store $r10
+store $r4
 put $r2
 xor $r2
-sfl $r10
+sfl $r4
 store $r2
+
 save #2
-store $r10
+store $r4
 put $r2
 xor $r2
-sfl $r10
+sfl $r4
 store $r2
+
 save #1
-store $r10
+store $r4
 put $r2
 xor $r2
-sfl $r10
+sfl $r4
 store $r2
+
+#and r2, r2, #1
 save #1
-store $r10
+store $r4
 put $r2
-and $r10
+and $r4
 store $r2
+
+#add r0, r0, r2
 put $r9
 add $r2
 store $r9
+
+#and r0, r0, #255
 save #255
 and $r9
 store $r9
