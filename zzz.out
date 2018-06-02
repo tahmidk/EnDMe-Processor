@@ -1,8 +1,7 @@
-save to
+save #5
 store $dst
-jmp
+jmp 
 save #10
 store $r1
-to:
 save #9
 store $r2
