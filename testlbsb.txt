@@ -1,0 +1,10 @@
+save #10
+
+# store 9 to memory space 10
+store $r1
+save #9
+sb $r1
+
+save #10
+store $r2
+lb $r2
