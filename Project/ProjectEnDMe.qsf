@@ -54,6 +54,8 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name SEARCH_PATH simulation/modelsim
+set_global_assignment -name SEARCH_PATH ../project
 set_global_assignment -name SYSTEMVERILOG_FILE definitions.sv
 set_global_assignment -name SYSTEMVERILOG_FILE reg_file.sv
 set_global_assignment -name SYSTEMVERILOG_FILE instr_rom.sv
@@ -66,6 +68,5 @@ set_global_assignment -name SYSTEMVERILOG_FILE mux_2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mux_4.sv
 set_global_assignment -name SYSTEMVERILOG_FILE accumulator.sv
 set_global_assignment -name SYSTEMVERILOG_FILE controller.sv
-set_global_assignment -name SEARCH_PATH simulation/modelsim
-set_global_assignment -name SEARCH_PATH ../project
+set_global_assignment -name SYSTEMVERILOG_FILE final_testbench.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

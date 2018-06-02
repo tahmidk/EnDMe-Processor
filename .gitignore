@@ -5,3 +5,6 @@
 !*/Project/simulation/modelsim/machine_code.bin
 !*/Project/simulation/modelsim/mem_init.dat
 *.rpt
+*.bak
+*.rpt
+Project/ProjectEnDMe_nativelink_simulation.rpt
