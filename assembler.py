@@ -80,15 +80,15 @@ labels = dict()		# A dict mapping all labels to the instr # after them
 
 # Script
 # Check that both command line arguments for input and output.txt are given
-if not len(sys.argv) == 2:
-	print("Expected 1 argument (assembly file) but got %d" \
+if not len(sys.argv) == 4:
+	print("Expected 3 argument (assembly file) but got %d" \
 		% (len(sys.argv) - 1))
 else:
 	# Initialize input and output files
 	assembly_in = open(sys.argv[1], 'r')
-	machine_code_out = open("machine_code.bin", 'w')
+	machine_code_out = open(sys.argv[2], 'w')
 	# Used to see decompiled op_code
-	assembly_code_out = open("assembly_code.txt", 'w')
+	assembly_code_out = open(sys.argv[3], 'w')
 	# Fetch all instructions and labels and initialize the instructions and
 	# labels data structures
 	for line in assembly_in:
