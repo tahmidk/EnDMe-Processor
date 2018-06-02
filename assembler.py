@@ -54,7 +54,7 @@ op_code = {
 
 # The registers and corresponding values
 reg_code = {
-	'$acc': 0,
+	'$r0': 0,
 	'$r1': 1,
 	'$r2': 2,
 	'$r3': 3,

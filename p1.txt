@@ -1,4 +1,4 @@
-# r9 = working register (variable), the thing we need for every iteration(states for LFSR)
+# r0 = working register (variable), the thing we need for every iteration(states for LFSR)
 # r1 = tap pattern (fixed for a given message)
 #   	  legitimate (hex) values are: e1, d4, c6, b8,
 #                                     b4, b2, fa, f3
@@ -21,10 +21,10 @@ lb $r1
 store $r1
 
 save #43
-store $r9
-lb $r9
+store $r0
+lb $r0
 store $r3
-store $r9
+store $r0
 
 save #0
 store $r5
@@ -43,7 +43,7 @@ loop1:
 
 encode_space:
 save #32
-xor $r9
+xor $r0
 sb $r6
 
 
@@ -51,36 +51,36 @@ sb $r6
 lfsr:
 #and r2, r1, r0
 put $r1
-and $r9
+and $r0
 store $r2
 
 #lsl r0, r0, #1
 save #1
 store $r4
-put $r9
+put $r0
 sfl $r4
-store $r9
+store $r0
 
 #eor r2, r2, lsr #4
 save #4
 store $r4
 put $r2
 xor $r2
-sfl $r4
+sfr $r4
 store $r2
 
 save #2
 store $r4
 put $r2
 xor $r2
-sfl $r4
+sfr $r4
 store $r2
 
 save #1
 store $r4
 put $r2
 xor $r2
-sfl $r4
+sfr $r4
 store $r2
 
 #and r2, r2, #1
@@ -91,14 +91,14 @@ and $r4
 store $r2
 
 #add r0, r0, r2
-put $r9
+put $r0
 add $r2
-store $r9
+store $r0
 
 #and r0, r0, #255
 save #255
-and $r9
-store $r9
+and $r0
+store $r0
 # end of lfsr
 
 save #1
