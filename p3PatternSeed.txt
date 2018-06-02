@@ -1,0 +1,137 @@
+// r9 = working register (variable)
+
+// r1 = tap pattern (fixed for a given message)
+//   	  legitimate (hex) values are: e1, d4, c6, b8,
+//                                     b4, b2, fa, f3
+// r2 = parity computation (variable)
+// r3 = seed (fixed by first line of program)
+// r4 = pattern counter, indicating which pattern we are testing, start from 128(where the first pattern is stored)
+// r5 = state counter, = 0 in the begining
+// r6 = a counter to keep track of index of memory location, initially 64
+// r7 = exit code, if 1 means all good
+
+// Let Si represent state i of the LFSR sequence
+
+//take the first byte of encrypt message(locate at memory [64])
+//and xor it with space character to get the seed
+find_seed:
+
+save #64
+store $r9  //put 64 into r9
+lb $r9     //get the value from memory[64] on accumulator
+store $r1  //put mem[64] into r1
+save #32   //
+xor $r1    //xor it with 32 to get the first state(seed), get the seed on accumulator
+store $r3  //store the seed into r3 and r9
+store $r9
+
+//initialize r4 to 128
+save #128
+store $r4
+lb $r4
+store r1 //get tap pattern at r1
+
+save #0        	     // counter
+lb $r5
+save #64             // mem counter
+lb $r6
+save #1              // exit code
+store $r7
+
+
+check_space:
+save lfsr
+store $dst
+//takes a space and xor it with r9
+save #32
+xor r9
+cmp r6
+//if match, lfsr
+btr
+
+//if not, set r7 = 0(not the pattern we want), quit the loop
+save #0
+store $r7		//give exit code 0 if not true
+
+save done2
+store $dst
+jmp
+
+lfsr:
+put $r1		// pass only the 4 tap values
+and $r9
+store $r2
+
+save #1	// left-shift pattern
+store $r4
+put $r9
+sfl $r4
+store $r9
+
+// find the parity in 3 steps
+save #4
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #2
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #1
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #1          	// want just the parity bit (LSB)
+store $r4
+put $r2
+and $r4
+store $r2
+
+put $r9		// bring in parity to LSB
+add $r2
+store $r9
+
+save #255	// keep just the lower 8 bits
+and $r9
+store $r9
+//End of LFSR engine, by here, we finish updating r9
+
+save #1	// increment counters of r5 and r6
+add $r5
+store $r5
+
+save #1	// increment counters of r6
+add $r6
+store $r6
+
+save done2
+store $dst
+save #8	// done if r5 reach 8
+cmp $r5
+btr
+
+
+
+
+done2:
+//check r7, if r7 is still 1, it means we successfully find the pattern
+save #1
+cmp $r7
+btr done_find_tap_and_seed
+
+//else, jump back to try_pattern, but increment value of $r4, if r4 value is greater than 135, it means no match pattern and that is sad
+save #1
+add $r4
+store $r4
+jmp try_pattern
+
+done_find_tap_and_seed:

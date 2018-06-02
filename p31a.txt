@@ -1,0 +1,110 @@
+find_seed:
+save #64
+store $r9
+lb $r9
+store $r1
+save #32
+xor $r1
+store $r3
+store $r9
+
+save #128
+store $r4
+lb $r4
+store $r1
+
+save #0
+lb $r5
+save #64
+lb $r6
+save #1
+store $r7
+
+check_space:
+save lfsr
+store $dst
+save #32
+xor $r9
+cmp $r6
+btr
+
+save #0
+store $r7
+save done2
+store $dst
+jmp
+
+lfsr:
+put $r1
+and $r9
+store $r2
+
+save #1
+store $r4
+put $r9
+sfl $r4
+store $r9
+
+save #4
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #2
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #1
+store $r4
+put $r2
+xor $r2
+sfl $r4
+store $r2
+
+save #1
+store $r4
+put $r2
+and $r4
+store $r2
+
+put $r9
+add $r2
+store $r9
+
+save #255
+and $r9
+store $r9
+
+save #1
+add $r5
+store $r5
+
+save #1
+add $r6
+store $r6
+
+save done2
+store $dst
+save #8
+cmp $r5
+btr
+
+done2:
+save done_find_tap_and_seed
+store $dst
+save #1
+cmp $r7
+btr
+
+save #1
+add $r4
+store $r4
+save check_space
+store $dst
+jmp
+done_find_tap_and_seed:
