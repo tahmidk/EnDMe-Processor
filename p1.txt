@@ -5,10 +5,11 @@
 # r2 = parity computation (variable)
 # r3 = seed (fixed by first line of program)
 # r4 = used as tempory register
-# r5 = state counter -- should hit 2**N-1 for N taps, used to indicate the location to read, initially 0
+# r5 = state counter  initially 0
 # r6 = indicate the index of memory space to write to, start from 64
 # r7 = p, the number of spaces need to append before the message
 # r8 = p + 40
+# r11 = read counter
 save #41
 store $r7
 lb $r7
@@ -27,6 +28,8 @@ store $r9
 
 save #0
 store $r5
+store $r11
+
 save #64
 store $r6
 
@@ -57,13 +60,13 @@ store $dst
 jmp
 
 encode_char:
-lb $r5
+lb $r11
 xor $r9
 sb $r6
 
 save #1
-add $r5
-store $r5
+add $r11
+store $r11
 
 
 lfsr:
@@ -106,6 +109,9 @@ and $r9
 store $r9
 # end of lfsr
 
+save #1
+add $r5
+store $r5
 
 save #1
 add $r6

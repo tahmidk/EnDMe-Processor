@@ -13,17 +13,18 @@ store $r3
 store $r9
 save #0
 store $r5
+store $r11
 save #64
 store $r6
 save #40
 add $r7
 store $r8
-save #30
+save #31
 store $dst
 put $r5
 gtr $r8
 btr 
-save #36
+save #37
 store $dst
 put $r5
 gtr $r7
@@ -31,15 +32,15 @@ btr
 save #32
 xor $r9
 sb $r6
-save #42
+save #43
 store $dst
 jmp 
-lb $r5
+lb $r11
 xor $r9
 sb $r6
 save #1
-add $r5
-store $r5
+add $r11
+store $r11
 put $r1
 and $r9
 store $r2
@@ -78,13 +79,16 @@ save #255
 and $r9
 store $r9
 save #1
+add $r5
+store $r5
+save #1
 add $r6
 store $r6
-save #90
+save #94
 store $dst
 save #127
 gtr $r6
 btr 
-save #20
+save #21
 store $dst
 jmp 
