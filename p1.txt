@@ -111,11 +111,11 @@ save #1
 add $r6
 store $r6
 
-#done if r5 reach 63
+#done if r6 reach 127
 save done
 store $dst
-save #63
-gtr $r5
+save #127
+gtr $r6
 btr
 save loop1
 store $dst

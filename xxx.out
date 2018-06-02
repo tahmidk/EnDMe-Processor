@@ -82,8 +82,8 @@ add $r6
 store $r6
 save #90
 store $dst
-save #63
-gtr $r5
+save #127
+gtr $r6
 btr 
 save #20
 store $dst
