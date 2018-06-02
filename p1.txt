@@ -1,34 +1,53 @@
+# r9 = working register (variable), the thing we need for every iteration(states for LFSR)
+# r1 = tap pattern (fixed for a given message)
+#   	  legitimate (hex) values are: e1, d4, c6, b8,
+#                                     b4, b2, fa, f3
+# r2 = parity computation (variable)
+# r3 = seed (fixed by first line of program)
+# r4 = used as tempory register
+# r5 = state counter -- should hit 2**N-1 for N taps, used to indicate the location to read, initially 0
+# r6 = indicate the index of memory space to write to, start from 64
+# r7 = p, the number of spaces need to append before the message
+# r8 = p + 40
 save #41
 store $r7
 lb $r7
 store $r7
+
 save #42
 store $r1
 lb $r1
 store $r1
+
 save #43
 store $r9
 lb $r9
 store $r3
 store $r9
+
 save #0
 store $r5
 save #64
 store $r6
+
 save #40
 add $r7
 store $r8
+# end of initiallization
+
 loop1:
 save encode_space
 store $dst
 put $r5
 gtr $r8
 btr
+
 save encode_char
 store $dst
 put $r5
 gtr $r7
 btr
+
 encode_space:
 save #32
 xor $r9
@@ -36,13 +55,17 @@ sb $r6
 save lfsr
 store $dst
 jmp
+
 encode_char:
-put $r5
+lb $r5
 xor $r9
 sb $r6
-save lfsr
-store $dst
-jmp
+
+save #1
+add $r5
+store $r5
+
+
 lfsr:
 put $r1
 and $r9
@@ -81,16 +104,18 @@ store $r9
 save #255
 and $r9
 store $r9
-save #1
-add $r5
-store $r5
+# end of lfsr
+
+
 save #1
 add $r6
 store $r6
+
+#done if r5 reach 63
 save done
 store $dst
-save #126
-sub $r6
+save #63
+gtr $r5
 btr
 save loop1
 store $dst
