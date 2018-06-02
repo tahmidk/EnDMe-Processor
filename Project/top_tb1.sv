@@ -1,142 +1,13 @@
-/**---------------------------------------------------------------------
- *	Module:		Top Level EnDMe Processor
- *	Class:		CSE 141L - SP18
- * Authors: 	Tahmid Khan
- *					Shengyuan Lin
- *----------------------------------------------------------------------
- *	[Description]
- *	This module puts the EnDMe processor together module by module based
- * on the high level block diagram
- *
- *	[Input]
- *		CLK - the clock (1-bit)
- *		RESET - the control wire that resets pc to 0 if high (1-bit)
- *
- *	[Output]
- *		done - expressed when PC reaches end of program
- ---------------------------------------------------------------------*/
-
-import definitions::*;
- 
-module top_level(
-	input CLK,
-	input RESET,
-	output reg done
-);
- 
-	// Module wires/BUS
-	wire [7:0] dst_data;
-	wire [15:0] instr_addr_bus;
-	wire [8:0] instruction;
-	wire [7:0] acc_output;
-	wire [7:0] reg_output;
-	wire [7:0] alu_output;
-	wire [7:0] mem_output;
-	
-	// Parse instruction
-	wire [7:0] imm;
-	wire typ;
-	wire [3:0] op;
-	assign imm = instruction[7:0];
-	assign typ = instruction[8];
-	assign op = instruction[7:4];
-	
-	// Control wires
-	wire ctrl_branch;
-	wire ctrl_jump;
-	wire ctrl_zero;
-	wire ctrl_regWr;
-	wire ctrl_memWr;
-	wire [1:0] ctrl_accDat;
-	wire ctrl_accWr;
-	wire [2:0] ctrl_alu;
-	
-	// Done flag
-	initial done <= 0;
-	always @(posedge CLK) begin
-		// Done when no more instructions
-		if(^instruction === 1'bX && instr_addr_bus != 16'hffff)
-			done <= 1;
-	end
- 
-	// Initialize instruction fetch
-	wire accRslt;
-	assign accRslt = (acc_output == 1);
-	instr_fetch IF(
-		.CLK(CLK),
-		.dst_in(dst_data),
-		.reset_ctrl(RESET),
-		.br_ctrl(ctrl_branch),
-		.jmp_ctrl(ctrl_jump),
-		.accdata_in(accRslt),
-		.instr_addr(instr_addr_bus)
-	);
-	
-	// Initialize instruction ROM
-	instr_rom IROM(
-		.addr_in(instr_addr_bus),
-		.instr_out(instruction)
-	);
-	
-	// Initialize accumulator
-	accumulator ACC(
-		.data_imm_in(imm),
-		.data_reg_in(reg_output),
-		.data_mem_in(mem_output),
-		.data_alu_in(alu_output),
-		.data_ctrl(ctrl_accDat),
-		.write_ctrl(ctrl_accWr),
-		.acc_out(acc_output)
-	);
-	
-	// Initialize control unit
-	controller CTRL(
-		.TYP(typ),
-		.OP(op),
-		.br_ctrl(ctrl_branch),
-		.jmp_ctrl(ctrl_jump),
-		.regwrite_ctrl(ctrl_regWr),
-		.aluop_ctrl(ctrl_alu),
-		.memwrite_ctrl(ctrl_memWr),
-		.accdata_ctrl(ctrl_accDat),
-		.accwrite_ctrl(ctrl_accWr)
-	);
-	
-	// Initialize register file
-	reg_file RF(
-		.CLK(CLK),
-		.reg_in(instruction[3:0]),
-		.data_in(acc_output),
-		.write_ctrl(ctrl_regWr),
-		.data_out(reg_output),
-		.dst_out(dst_data)
-	);
-	
-	// Initialize ALU
-	alu ALU(
-		.reg_in(reg_output),
-		.acc_in(acc_output),
-		.op_ctrl(ctrl_alu),
-		.rslt_out(alu_output)
-	);
-	
-	// Initialize data memory
-	data_mem DMEM(
-		.CLK(CLK),
-		.addr_in(reg_output),
-		.data_in(acc_output),
-		.writemem_ctrl(ctrl_memWr),
-		.data_out(mem_output)
-	);
- 
- 
-endmodule 
-
-
-// Test module for top level
-module tb_top();
-
-	logic      clk            ,  // advances simulation step-by-step
+// Lab4_tb
+// testbench for programmable message encryption
+// CSE141L  Spring 2018
+// Sequence:
+// run program 1 (encrypt first message)
+// run program 2 (decrypt second message)
+// run program 1 again (encrypt third message)
+// run program 3 (decrypt fourth message)
+module top_tb ()            ;
+  logic      clk            ,  // advances simulation step-by-step
              init           ;  // init (reset, start) command to DUT
   wire       done           ;  // done flag returned by DUT
   logic[7:0] message1[41]   ,  // first program 1 original message, in binary
@@ -344,12 +215,12 @@ module tb_top();
 // ***** load operands into your data memory *****
 // ***** use your instance name for data memory and its internal core *****
     for(int m=0; m<41; m++)
-      dut.DMEM.mem_file[m] = str1[m];       // copy original string into device's data memory[0:40]
-    dut.DMEM.mem_file[41] = pre_length[0];  // number of bytes preceding message
-    dut.DMEM.mem_file[42] = lfsr_ptrn[0];   // LFSR feedback tap positions (8 possible ptrns)
-    dut.DMEM.mem_file[43] = LFSR_init[0];   // LFSR starting state (nonzero)
+      dut.data_mem.DM[m] = str1[m];       // copy original string into device's data memory[0:40]
+    dut.data_mem.DM[41] = pre_length[0];  // number of bytes preceding message
+    dut.data_mem.DM[42] = lfsr_ptrn[0];   // LFSR feedback tap positions (8 possible ptrns)
+    dut.data_mem.DM[43] = LFSR_init[0];   // LFSR starting state (nonzero)
 // load constants, including LUTs, for program 1 here
-    $display("lfsr_init[0]=%h,dut.DMEM.mem_file[43]=%h",LFSR_init[0],dut.DMEM.mem_file[43]);
+    $display("lfsr_init[0]=%h,dut.data_mem.DM[43]=%h",LFSR_init[0],dut.data_mem.DM[43]);
     // $display("%d  %h  %h  %h  %s",i,message[i],msg_padded[i],msg_crypto[i],str[i]);
     #20ns init = 0;
     #60ns;                                // wait for 6 clock cycles of nominal 10ns each
@@ -359,19 +230,19 @@ module tb_top();
 // ***** reads your results and compares to test bench
 // ***** use your instance name for data memory and its internal core *****
     for(int n=0; n<64; n++)
-	  if(msg_crypto1[n]!=dut.DMEM.mem_file[n+64])
+	  if(msg_crypto1[n]!=dut.data_mem.DM[n+64])
         $display("%d bench msg: %s %h dut msg: %h  OOPS!",
-          n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_file[n+64]);
+          n, msg_crypto1[n], msg_crypto1[n], dut.data_mem.DM[n+64]);
       else
         $display("%d bench msg: %s %h dut msg: %h",
-          n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_file[n+64]);
+          n, msg_crypto1[n], msg_crypto1[n], dut.data_mem.DM[n+64]);
 
     // run program 2
     init = 1;                          // activate reset
 // ***** load operands into your data memory *****
 // ***** use your instance name for data memory and its internal core *****
     for(int n=64; n<128; n++)
-      dut.DMEM.mem_file[n] = msg_crypto2[n - 64];
+      dut.data_mem.DM[n] = msg_crypto2[n - 64];
 // load new constants into data_mem for program 2 here
     #20ns init = 0;
     #60ns;                             // wait for 6 clock cycles of nominal 10ns each
@@ -381,22 +252,22 @@ module tb_top();
 // ***** reads your results and compares to test bench
 // ***** use your instance name for data memory and its internal core *****
     for(int n=0; n<41; n++)
-      if(str2[n]!=dut.DMEM.mem_file[n])
+      if(str2[n]!=dut.data_mem.DM[n])
         $display("%d bench msg: %s  %h dut msg: %h  OOPS!",
-          n, str2[n], str2[n], dut.DMEM.mem_file[n]);
+          n, str2[n], str2[n], dut.data_mem.DM[n]);
       else
         $display("%d bench msg: %s  %h dut msg: %h",
-          n, str2[n], str2[n], dut.DMEM.mem_file[n]);
+          n, str2[n], str2[n], dut.data_mem.DM[n]);
 
     // run program 1
     init = 1;
 // ***** load operands into your data memory *****
 // ***** use your instance name for data memory and its internal core *****
     for(int m=0; m<41; m++)
-      dut.DMEM.mem_file[m] = str3[m];       // copy original string into device's data memory[0:40]
-    dut.DMEM.mem_file[41] = pre_length[2];  // number of bytes preceding message
-    dut.DMEM.mem_file[42] = lfsr_ptrn[2];   // LFSR feedback tap positions (8 possible ptrns)
-    dut.DMEM.mem_file[43] = LFSR_init[2];   // LFSR starting state (nonzero)
+      dut.data_mem.DM[m] = str3[m];       // copy original string into device's data memory[0:40]
+    dut.data_mem.DM[41] = pre_length[2];  // number of bytes preceding message
+    dut.data_mem.DM[42] = lfsr_ptrn[2];   // LFSR feedback tap positions (8 possible ptrns)
+    dut.data_mem.DM[43] = LFSR_init[2];   // LFSR starting state (nonzero)
     // $display("%d  %h  %h  %h  %s",i,message[i],msg_padded[i],msg_crypto[i],str[i]);
     #20ns init = 0;
     #60ns;                                // wait for 6 clock cycles of nominal 10ns each
@@ -406,19 +277,19 @@ module tb_top();
 // ***** reads your results and compares to test bench
 // ***** use your instance name for data memory and its internal core *****
     for(int n=0; n<64; n++)
-	  if(msg_crypto3[n]!=dut.DMEM.mem_file[n+64])
+	  if(msg_crypto3[n]!=dut.data_mem.DM[n+64])
         $display("%d bench msg: %s  %h dut msg: %h   OOPS!",
-          n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_file[n+64]);
+          n, msg_crypto3[n], msg_crypto3[n], dut.data_mem.DM[n+64]);
 	  else
         $display("%d bench msg: %s  %h dut msg: %h",
-          n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_file[n+64]);
+          n, msg_crypto3[n], msg_crypto3[n], dut.data_mem.DM[n+64]);
 
     // run program 3
     init = 1;                          // activate reset
 // ***** load operands into your data memory *****
 // ***** use your instance name for data memory and its internal core *****
     for(int n=64; n<128; n++)
-      dut.DMEM.mem_file[n] = msg_crypto4[n - 64];
+      dut.data_mem.DM[n] = msg_crypto4[n - 64];
     #20ns init = 0;
     #60ns;                             // wait for 6 clock cycles of nominal 10ns each
     wait(done);                        // wait for DUT's done flag to go high
@@ -427,22 +298,12 @@ module tb_top();
 // ***** reads your results and compares to test bench
 // ***** use your instance name for data memory and its internal core *****
     for(int n=0; n<41-spaces; n++)
-      if(str4[n+lk]!=dut.DMEM.mem_file[n])
+      if(str4[n+lk]!=dut.data_mem.DM[n])
         $display("%d bench msg: %s  %h dut msg: %h   OOPS!",
-          n, str4[n+lk], str4[n+lk], dut.DMEM.mem_file[n]);
+          n, str4[n+lk], str4[n+lk], dut.data_mem.DM[n]);
 	  else
         $display("%d bench msg: %s  %h dut msg: %h",
-          n, str4[n+lk], str4[n+lk], dut.DMEM.mem_file[n]);
-			 
-	// Print contents of the register file
-	$display("[Post] Reg Data:");
-	for (int n=0; n < 16; n=n+1)
-		$display("%d:%d",n,dut.RF.core[n]);
-	
-	// Print Contents of Mem File
-	$display("[Post] Memory File:");
-	for(int n=0; n < 2**8; n=n+1)
-		$display("%d:%d",n,dut.DMEM.mem_file[n]);
+          n, str4[n+lk], str4[n+lk], dut.data_mem.DM[n]);
     #20ns $stop;
   end
 
