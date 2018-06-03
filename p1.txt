@@ -71,12 +71,12 @@ store $r0
 save #255
 and $r0
 store $r0
+# end of lfsr
 
 #jump back
 put $r13
 store $dst
 jmp
-# end of lfsr
 
 start:
 save #41

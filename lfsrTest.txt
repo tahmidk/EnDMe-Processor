@@ -86,6 +86,6 @@ btr
 #if not at seed, continue
 save lfsr
 store $dst
-jmp
+btr
 
 done:
