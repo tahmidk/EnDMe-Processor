@@ -108,6 +108,11 @@ store $r8
 # end of initiallization
 
 loop1:
+
+save #1
+add $r5
+store $r5
+
 # if r5 is greater than r8, it means we are encoding spaces after message
 save encode_space
 store $dst
@@ -149,10 +154,6 @@ store $dst
 jmp
 
 lfsr1:
-
-save #1
-add $r5
-store $r5
 
 save #1
 add $r6
