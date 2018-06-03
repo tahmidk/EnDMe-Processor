@@ -81,7 +81,7 @@ save done
 store $dst
 put $r0
 cmp $r3
-jmp
+btr
 
 #if not at seed, continue
 save lfsr

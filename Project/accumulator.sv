@@ -17,6 +17,7 @@
  ---------------------------------------------------------------------*/
 
 module accumulator(
+	input CLK,
 	input [7:0] data_imm_in,
 	input [7:0] data_reg_in,
 	input [7:0] data_mem_in,
@@ -41,10 +42,10 @@ module accumulator(
 		.mux_out(acc_data)
 	);
 	
-	// Write only if the write control is expressed
-	always @(write_ctrl or data_ctrl) begin
+	// Write to accumulator
+	always @(negedge CLK) begin//(write_ctrl or data_ctrl) begin
 		if(write_ctrl) begin
-			#1 acc_out <= acc_data;
+			acc_out <= acc_data;
 		end
 	end
 

@@ -80,6 +80,7 @@ module top_level(
 	
 	// Initialize accumulator
 	accumulator ACC(
+		.CLK(CLK),
 		.data_imm_in(imm),
 		.data_reg_in(reg_output),
 		.data_mem_in(mem_output),
@@ -131,6 +132,45 @@ module top_level(
  
  
 endmodule 
+
+
+module tb_top_basic();
+
+	reg CLK;
+	reg RESET;
+	wire done;
+	
+	integer i;
+
+	always #10 CLK = ~CLK;
+	initial begin
+		CLK <= 0;
+		RESET <= 0;
+		
+		// Let it run until it's done
+		wait(done);
+		
+		// Print contents of the register file
+		$display("[Post] Reg Data:");
+		for (i=0; i < 16; i=i+1)
+			$display("%d:%d",i,TOP.RF.core[i]);
+		
+		// Print Contents of Mem File
+		$display("[Post] Memory File:");
+		for(i=0; i < 2**8; i=i+1)
+			$display("%d:%d",i,TOP.DMEM.mem_file[i]);
+		
+		#10 $stop;
+	end
+	
+	// Initialize top level module
+	top_level TOP(
+		.CLK(CLK),
+		.RESET(RESET),
+		.done(done)
+	);
+
+endmodule
 
 
 // Test module for top level
