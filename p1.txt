@@ -62,25 +62,26 @@ sfl $r4
 store $r0
 
 #eor r2, r2, lsr #4
+
 save #4
 store $r4
 put $r2
-xor $r2
 sfr $r4
+xor $r2
 store $r2
 
 save #2
 store $r4
 put $r2
-xor $r2
 sfr $r4
+xor $r2
 store $r2
 
 save #1
 store $r4
 put $r2
-xor $r2
 sfr $r4
+xor $r2
 store $r2
 
 #and r2, r2, #1
