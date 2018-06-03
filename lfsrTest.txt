@@ -1,0 +1,91 @@
+# r0 = working register (variable), the thing we need for every iteration(states for LFSR)
+# r1 = tap pattern (fixed for a given message)
+#   	  legitimate (hex) values are: e1, d4, c6, b8,
+#                                     b4, b2, fa, f3
+# r2 = parity computation (variable)
+# r3 = seed (fixed by first line of program)
+# r4 = used as tempory register
+# r5 = state counter
+
+# b8 = 184
+save #184
+store $r1
+
+#store seed (0x11) to both r3 and r0
+save #17
+store $r3
+store $r0
+
+save #0
+store $r5
+
+lfsr:
+#and r2, r1, r0
+put $r1
+and $r0
+store $r2
+
+#lsl r0, r0, #1
+save #1
+store $r4
+put $r0
+sfl $r4
+store $r0
+
+#eor r2, r2, lsr #4
+save #4
+store $r4
+put $r2
+sfr $r4
+xor $r2
+store $r2
+
+save #2
+store $r4
+put $r2
+sfr $r4
+xor $r2
+store $r2
+
+save #1
+store $r4
+put $r2
+sfr $r4
+xor $r2
+store $r2
+
+#and r2, r2, #1
+save #1
+store $r4
+put $r2
+and $r4
+store $r2
+
+#add r0, r0, r2
+put $r0
+add $r2
+store $r0
+
+#and r0, r0, #255
+save #255
+and $r0
+store $r0
+# end of lfsr
+
+save #1
+add $r5
+store $r5
+
+#see if we ended back at seed
+save done
+store $dst
+put $r0
+cmp $r3
+jmp
+
+#if not at seed, continue
+save lfsr
+store $dst
+jmp
+
+done:

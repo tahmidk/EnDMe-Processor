@@ -1,27 +1,6 @@
-save #41
-store $r7
-lb $r7
-store $r7
-save #42
-store $r1
-lb $r1
-store $r1
 save #43
-store $r0
-lb $r0
-store $r3
-store $r0
-save #0
-store $r5
-store $r11
-save #64
-store $r6
-save #40
-add $r7
-store $r8
-save #32
-xor $r0
-sb $r6
+store $dst
+jmp 
 put $r1
 and $r0
 store $r2
@@ -59,17 +38,68 @@ store $r0
 save #255
 and $r0
 store $r0
+put $r13
+store $dst
+jmp 
+save #41
+store $r7
+lb $r7
+store $r7
+save #42
+store $r1
+lb $r1
+store $r1
+save #43
+store $r0
+lb $r0
+store $r3
+store $r0
+save #0
+store $r5
+store $r11
+save #64
+store $r6
+save #40
+add $r7
+store $r8
+save #74
+store $dst
+put $r5
+gtr $r8
+btr 
+save #80
+store $dst
+put $r5
+gtr $r7
+btr 
+save #32
+xor $r0
+sb $r6
+save #86
+store $dst
+jmp 
+lb $r11
+xor $r0
+sb $r6
+save #1
+add $r11
+store $r11
+save #91
+store $r13
+save #3
+store $dst
+jmp 
 save #1
 add $r5
 store $r5
 save #1
 add $r6
 store $r6
-save #75
+save #105
 store $dst
 save #127
 gtr $r6
 btr 
-save #21
+save #64
 store $dst
 jmp 
