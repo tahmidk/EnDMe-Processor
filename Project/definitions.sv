@@ -39,7 +39,9 @@ package definitions;
 	  SFL = 4'b1010,	// Logical shift left
 	  SFR = 4'b1011,	// Logical shift right
 	  CMP = 4'b1100,	// Compare equality
-	  GTR = 4'b1101	// Greater than
+	  GTR = 4'b1101,	// Greater than
+	  
+	  DONE = 4'b1111	// Special done instruction
 	} Instr_O;
 	 
 endpackage // defintions

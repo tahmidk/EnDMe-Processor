@@ -1,7 +1,0 @@
-save #5
-store $dst
-jmp 
-save #10
-store $r1
-save #9
-store $r2

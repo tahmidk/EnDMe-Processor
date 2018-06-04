@@ -5,14 +5,14 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- * 	CLK - the clock (1-bit)
- *		addr_in - the address to look up in memory (8-bits)
- *		data_in - the data to write to addr (8-bits)
- *		writemem_ctrl - the control signal dictating whether data_in 
- *			should be committed to memory at addr or not (1-bit)
+ * 	CLK				the clock (1-bit)
+ *		addr_in			the address to look up in memory (8-bits)
+ *		data_in			the data to write to addr (8-bits)
+ *		writemem_ctrl	the control signal dictating whether data_in should 
+ *							be committed to memory at addr or not (1-bit)
  *
  * [Outputs]
- * 	data_out - the data at addr (8-bits)
+ * 	data_out			the data at addr (8-bits)
  * 
  ---------------------------------------------------------------------*/
 
@@ -34,16 +34,12 @@ module data_mem (
 	// Read data from memory immediately
 	always @* begin
 		data_out = mem_file[addr_in];
-		$display("Memory read M[%d] = %d", addr_in, data_out);
 	end
 
 	// Write data to memory sequentially
 	always_ff @(posedge CLK) begin
-		if(writemem_ctrl) 
-			begin
-				mem_file[addr_in] <= data_in;
-				$display("Memory write M[%d] = %d", addr_in, data_in);
-			end
+		if(writemem_ctrl)
+			mem_file[addr_in] <= data_in;
 	end
 
 endmodule

@@ -5,15 +5,15 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- * 	CLK - the clock (1-bit)
- *		dst_in - wire accepting $dst register data (8-bits)
- *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
- *		br_ctrl - the control wire determining control flow (btr) (1-bit)
- *		jmp_ctrl - the control wire determining control flow (jmp) (1-bit)
- *		accdata_in - the data currently in the accumulator (== 1 or not) (1-bit)
+ * 	CLK			the clock (1-bit)
+ *		dst_in		wire accepting $dst register data (8-bits)
+ *		reset_ctrl	the control wire that resets pc to 0 if high (1-bit)
+ *		br_ctrl		the control wire determining control flow (btr) (1-bit)
+ *		jmp_ctrl		the control wire determining control flow (jmp) (1-bit)
+ *		accdata_in	the data currently in the accumulator (== 1 or not) (1-bit)
  *
  * [Outputs]
- * 	instr_addr - the address of the next instruction (16-bits)
+ * 	instr_addr	the address of the next instruction (16-bits)
  * 
  ---------------------------------------------------------------------*/
 

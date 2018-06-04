@@ -5,11 +5,11 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- * 	addr_in - the address to read instruction from as indicated by
- *			the program counter pc (16-bits)
+ * 	addr_in		the address to read instruction from as indicated by
+ *						the program counter pc (16-bits)
  *
  * [Outputs]
- * 	instr_out - the instruction at addr_in (9=bits)
+ * 	instr_out	the instruction at addr_in (9=bits)
  * 
  ---------------------------------------------------------------------*/
 

@@ -59,7 +59,7 @@ store $r5
 store $r11
 save #64
 store $r6
-save #40
+save #41
 add $r7
 store $r8
 save #1
@@ -67,13 +67,13 @@ add $r5
 store $r5
 save #77
 store $dst
-put $r5
-gtr $r8
+put $r8
+gtr $r5
 btr 
 save #83
 store $dst
-put $r5
-gtr $r7
+put $r7
+gtr $r5
 btr 
 save #32
 xor $r0
@@ -103,3 +103,4 @@ btr
 save #64
 store $dst
 jmp 
+==DONE==

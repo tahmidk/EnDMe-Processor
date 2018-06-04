@@ -74,6 +74,7 @@ reg_code = {
 
 # Data structures
 instr_mc = ""		# Instruction machine code
+DONE_SIGNAL = "@@@"	# Dedicted special symbol indicating end of program
 
 instructions = []	# A list of all the instructions
 labels = dict()		# A dict mapping all labels to the instr # after them
@@ -104,15 +105,14 @@ else:
 			labels[members[0][:-1]] = len(instructions)
 			continue
 
-		# Detect an instruction
-		if members[0] == 'save' or members[0] in op_code:
+		# Detect an instruction or end of program
+		if members[0] == 'save' or members[0] in op_code or members[0] == DONE_SIGNAL:
 			instructions.append(members)
 		# Illegal instruction
 		else:
 			print("Illegal instruction \'%s\'" % str(members[0]))
 			sys.exit()
 
-	#import pdb; pdb.set_trace()
 	# Convert all instructions in instructions array to machine code
 	for instr in instructions:
 		# Detect M-type instruction
@@ -160,6 +160,11 @@ else:
 				assembly_code_out.write(instr[0] + ' ' + str(instr[1]) + '\n')
 			else:
 				assembly_code_out.write(instr[0] + ' ' + '\n')
+
+		# Detect end of program
+		elif instr[0] == DONE_SIGNAL:
+			machine_code_out.write('011111111')
+			assembly_code_out.write('==DONE==')
 	# Close files
 	assembly_in.close()
 	machine_code_out.close()

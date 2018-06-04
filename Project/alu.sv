@@ -5,13 +5,12 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- * 	reg_in - the data wire from the register file (8-bits)
- * 	acc_in - the output wire from the accumulator (8-bits)
- *		op_ctrl - the control wire dictating what op to execute (3-bits)
+ * 	reg_in	the data wire from the register file (8-bits)
+ * 	acc_in	the output wire from the accumulator (8-bits)
+ *		op_ctrl	the control wire dictating what op to execute (3-bits)
  *
  * [Outputs]
- * 	rslt_out - the result of the ALU operation (8-bits)
- *		zero_out - the zero control signal for branching (1-bit)
+ * 	rslt_out	the result of the ALU operation (8-bits)
  * 
  ---------------------------------------------------------------------*/
 

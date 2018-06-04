@@ -5,14 +5,14 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- * 	CLK - the clock (1-bit)
- *		reset_ctrl - the control wire that resets pc to 0 if high (1-bit)
- *		pcnext_in - the wire containing the incremented pc value (16-bits)
- *		pcbr_in - the wire containing the branch taken pc value (16-bits)
- *		br_ctrl - branch taken or not (1-bit)
+ * 	CLK			the clock (1-bit)
+ *		reset_ctrl	the control wire that resets pc to 0 if high (1-bit)
+ *		pcnext_in	the wire containing the incremented pc value (16-bits)
+ *		pcbr_in		the wire containing the branch taken pc value (16-bits)
+ *		br_ctrl		branch taken or not (1-bit)
  *
  * [Outputs]
- * 	pc_out - the wire outputting the pc for the next clock cycle (16-bits)
+ * 	pc_out		the wire outputting the pc for the next clock cycle (16-bits)
  * 
  ---------------------------------------------------------------------*/
 

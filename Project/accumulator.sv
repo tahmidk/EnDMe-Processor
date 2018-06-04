@@ -5,15 +5,15 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Input]
- *		data_imm_in - data line from instruction immediate bits (8-bits)
- *		data_reg_in - data line from register file data out (8-bits)
- *		data_mem_in - data line from memory file read data (8-bits)
- *		data_alu_in - data line from alu result output (8-bits)
- *		data_ctrl - control signal for which input acc receives (2-bits)
- *		accwrite_ctrl - should we write to accumulator this cycle or not
+ *		data_imm_in		data line from instruction immediate bits (8-bits)
+ *		data_reg_in		data line from register file data out (8-bits)
+ *		data_mem_in		data line from memory file read data (8-bits)
+ *		data_alu_in		data line from alu result output (8-bits)
+ *		data_ctrl		control signal for which input acc receives (2-bits)
+ *		accwrite_ctrl	should we write to accumulator this cycle or not
  *
  *	[Output]
- *		acc_out - accumulator data output wire
+ *		acc_out			accumulator data output wire
  ---------------------------------------------------------------------*/
 
 module accumulator(

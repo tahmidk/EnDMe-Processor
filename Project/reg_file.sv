@@ -5,16 +5,16 @@
  *					Shengyuan Lin
  *----------------------------------------------------------------------
  *	[Inputs]
- *		CLK - the clock wire
- * 	reg_in - the wire from instr determining which register to work 
- *			with (4-bits)
- * 	data_in - the data that will be stored given write_ctrl (8-bits)
- *		write_ctrl - control signal that enables/disables writing data_in
- *			to the register indicated by reg_in (1-bit)
+ *		CLK			the clock wire
+ * 	reg_in		the wire from instr determining which register to work 
+ *						with (4-bits)
+ * 	data_in		the data that will be stored given write_ctrl (8-bits)
+ *		write_ctrl	control signal that enables/disables writing data_in
+ *						to the register indicated by reg_in (1-bit)
  *
  * [Outputs]
- * 	data_out - the data contained in register reg_in (8-bits)
- *		dst_out - the data contained in register $dst (8-bits)
+ * 	data_out		the data contained in register reg_in (8-bits)
+ *		dst_out		the data contained in register $dst (8-bits)
  * 
  ---------------------------------------------------------------------*/
 
