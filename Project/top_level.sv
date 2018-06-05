@@ -149,12 +149,12 @@ module tb_top_basic();
 		// Print contents of the register file
 		$display("[Post] Reg Data:");
 		for (i=0; i < 16; i=i+1)
-			$display("%d:%d",i,TOP.RF.core[i]);
+			$display("%d:%d",i,TOP.RF.reg_core[i]);
 		
 		// Print Contents of Mem File
 		$display("[Post] Memory File:");
 		for(i=0; i < 2**8; i=i+1)
-			$display("%d:%d",i,TOP.DMEM.mem_file[i]);
+			$display("%d:%d",i,TOP.DMEM.mem_core[i]);
 		
 		#10 $stop;
 	end
@@ -372,40 +372,12 @@ module tb_top();
 		for(int jj=0; jj<64; jj++)
 			$write("%s",str_enc4[jj]);
 		$display("\n");
-
-		// --------------------------Run Program 1--------------------------
-		// ***** load operands into your data memory *****
-		// ***** use your instance name for data memory and its internal core *****
-		for(int m=0; m<41; m++)
-			dut.DMEM.mem_file[m] = str1[m];      // copy original string into device's data memory[0:40]
-		dut.DMEM.mem_file[41] = pre_length[0];  // number of bytes preceding message
-		dut.DMEM.mem_file[42] = lfsr_ptrn[0];   // LFSR feedback tap positions (8 possible ptrns)
-		dut.DMEM.mem_file[43] = LFSR_init[0];   // LFSR starting state (nonzero)
-		// load constants, including LUTs, for program 1 here
-		$display("lfsr_init[0]=%h,dut.DMEM.mem_file[43]=%h",LFSR_init[0],dut.DMEM.mem_file[43]);
-		// $display("%d  %h  %h  %h  %s",i,message[i],msg_padded[i],msg_crypto[i],str[i]);
-		#20ns init = 0;
-		#60ns;                                // wait for 6 clock cycles of nominal 10ns each
-		wait(done);                           // wait for DUT's done flag to go high
-		#10ns $display();
-		$display("program 1:");
 		
-		// ***** reads your results and compares to test bench
-		// ***** use your instance name for data memory and its internal core *****
-		for(int n=0; n<64; n++)
-			if(msg_crypto1[n]!=dut.DMEM.mem_file[n+64])
-				$display("%d bench msg: %s %h dut msg: %h  OOPS!",
-					n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_file[n+64]);
-			else
-				$display("%d bench msg: %s %h dut msg: %h",
-					n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_file[n+64]);
-
+		/*
 		// --------------------------Run Program 2--------------------------
 		init = 1;                          // activate reset
-		// ***** load operands into your data memory *****
-		// ***** use your instance name for data memory and its internal core *****
 		for(int n=64; n<128; n++)
-			dut.DMEM.mem_file[n] = msg_crypto2[n - 64];
+			dut.DMEM.mem_core[n] = msg_crypto2[n - 64];
 		// load new constants into data_mem for program 2 here
 		#20ns init = 0;
 		#60ns;						// wait for 6 clock cycles of nominal 10ns each
@@ -416,22 +388,25 @@ module tb_top();
 		// ***** reads your results and compares to test bench
 		// ***** use your instance name for data memory and its internal core *****
 		for(int n=0; n<41; n++)
-			if(str2[n]!=dut.DMEM.mem_file[n])
+			if(str2[n]!=dut.DMEM.mem_core[n])
 				$display("%d bench msg: %s  %h dut msg: %h  OOPS!",
-					n, str2[n], str2[n], dut.DMEM.mem_file[n]);
+					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
 			else
 				$display("%d bench msg: %s  %h dut msg: %h",
-					n, str2[n], str2[n], dut.DMEM.mem_file[n]);
+					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
+		*/
 
-		// -------------------------Run Program 1--------------------------
-		init = 1;
+		
+		// --------------------------Run Program 1--------------------------
 		// ***** load operands into your data memory *****
 		// ***** use your instance name for data memory and its internal core *****
 		for(int m=0; m<41; m++)
-			dut.DMEM.mem_file[m] = str3[m];       // copy original string into device's data memory[0:40]
-		dut.DMEM.mem_file[41] = pre_length[2];  // number of bytes preceding message
-		dut.DMEM.mem_file[42] = lfsr_ptrn[2];   // LFSR feedback tap positions (8 possible ptrns)
-		dut.DMEM.mem_file[43] = LFSR_init[2];   // LFSR starting state (nonzero)
+			dut.DMEM.mem_core[m] = str1[m];      // copy original string into device's data memory[0:40]
+		dut.DMEM.mem_core[41] = pre_length[0];  // number of bytes preceding message
+		dut.DMEM.mem_core[42] = lfsr_ptrn[0];   // LFSR feedback tap positions (8 possible ptrns)
+		dut.DMEM.mem_core[43] = LFSR_init[0];   // LFSR starting state (nonzero)
+		// load constants, including LUTs, for program 1 here
+		$display("lfsr_init[0]=%h,dut.DMEM.mem_core[43]=%h",LFSR_init[0],dut.DMEM.mem_core[43]);
 		// $display("%d  %h  %h  %h  %s",i,message[i],msg_padded[i],msg_crypto[i],str[i]);
 		#20ns init = 0;
 		#60ns;                                // wait for 6 clock cycles of nominal 10ns each
@@ -442,19 +417,75 @@ module tb_top();
 		// ***** reads your results and compares to test bench
 		// ***** use your instance name for data memory and its internal core *****
 		for(int n=0; n<64; n++)
-			if(msg_crypto3[n]!=dut.DMEM.mem_file[n+64])
-				$display("%d bench msg: %s  %h dut msg: %h   OOPS!",
-					n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_file[n+64]);
+			if(msg_crypto1[n]!=dut.DMEM.mem_core[n+64])
+				$display("%d bench msg: %s %h dut msg: %h  OOPS!",
+					n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_core[n+64]);
+			else
+				$display("%d bench msg: %s %h dut msg: %h",
+					n, msg_crypto1[n], msg_crypto1[n], dut.DMEM.mem_core[n+64]);
+
+					
+					
+					
+		// --------------------------Run Program 2--------------------------
+		init = 1;                          // activate reset
+		for(int n=64; n<128; n++)
+			dut.DMEM.mem_core[n] = msg_crypto2[n - 64];
+		// load new constants into data_mem for program 2 here
+		#20ns init = 0;
+		#60ns;						// wait for 6 clock cycles of nominal 10ns each
+		wait(done);					// wait for DUT's done flag to go high
+		#10ns $display();
+		$display("program 2:");
+		
+		// ***** reads your results and compares to test bench
+		// ***** use your instance name for data memory and its internal core *****
+		for(int n=0; n<41; n++)
+			if(str2[n]!=dut.DMEM.mem_core[n])
+				$display("%d bench msg: %s  %h dut msg: %h  OOPS!",
+					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
 			else
 				$display("%d bench msg: %s  %h dut msg: %h",
-					n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_file[n+64]);
+					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
+
+					
+					
+
+		// -------------------------Run Program 1--------------------------
+		init = 1;
+		// ***** load operands into your data memory *****
+		// ***** use your instance name for data memory and its internal core *****
+		for(int m=0; m<41; m++)
+			dut.DMEM.mem_core[m] = str3[m];       // copy original string into device's data memory[0:40]
+		dut.DMEM.mem_core[41] = pre_length[2];  // number of bytes preceding message
+		dut.DMEM.mem_core[42] = lfsr_ptrn[2];   // LFSR feedback tap positions (8 possible ptrns)
+		dut.DMEM.mem_core[43] = LFSR_init[2];   // LFSR starting state (nonzero)
+		// $display("%d  %h  %h  %h  %s",i,message[i],msg_padded[i],msg_crypto[i],str[i]);
+		#20ns init = 0;
+		#60ns;                                // wait for 6 clock cycles of nominal 10ns each
+		wait(done);                           // wait for DUT's done flag to go high
+		#10ns $display();
+		$display("program 1:");
+		
+		// ***** reads your results and compares to test bench
+		// ***** use your instance name for data memory and its internal core *****
+		for(int n=0; n<64; n++)
+			if(msg_crypto3[n]!=dut.DMEM.mem_core[n+64])
+				$display("%d bench msg: %s  %h dut msg: %h   OOPS!",
+					n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_core[n+64]);
+			else
+				$display("%d bench msg: %s  %h dut msg: %h",
+					n, msg_crypto3[n], msg_crypto3[n], dut.DMEM.mem_core[n+64]);
+					
+					
+					
 					
 		// -------------------------Run Program 3--------------------------
 		init = 1;                          // activate reset
 		// ***** load operands into your data memory *****
 		// ***** use your instance name for data memory and its internal core *****
 		for(int n=64; n<128; n++)
-			dut.DMEM.mem_file[n] = msg_crypto4[n - 64];
+			dut.DMEM.mem_core[n] = msg_crypto4[n - 64];
 		#20ns init = 0;
 		#60ns;                             // wait for 6 clock cycles of nominal 10ns each
 		wait(done);                        // wait for DUT's done flag to go high
@@ -464,22 +495,24 @@ module tb_top();
 		// ***** reads your results and compares to test bench
 		// ***** use your instance name for data memory and its internal core *****
 		for(int n=0; n<41-spaces; n++)
-			if(str4[n+lk]!=dut.DMEM.mem_file[n])
+			if(str4[n+lk]!=dut.DMEM.mem_core[n])
 				$display("%d bench msg: %s  %h dut msg: %h   OOPS!",
-					n, str4[n+lk], str4[n+lk], dut.DMEM.mem_file[n]);
+					n, str4[n+lk], str4[n+lk], dut.DMEM.mem_core[n]);
 			else
 				$display("%d bench msg: %s  %h dut msg: %h",
-					n, str4[n+lk], str4[n+lk], dut.DMEM.mem_file[n]);
-		 
+					n, str4[n+lk], str4[n+lk], dut.DMEM.mem_core[n]);
+		
+		
+		
 		// Print contents of the register file
 		$display("[Post] Reg Data:");
 		for (int n=0; n < 16; n=n+1)
-			$display("%d:%d",n,dut.RF.core[n]);
+			$display("%d:%d",n,dut.RF.reg_core[n]);
 	
 		// Print Contents of Mem File
 		$display("[Post] Memory File:");
 		for(int n=0; n < 2**8; n=n+1)
-			$display("%d:%d",n,dut.DMEM.mem_file[n]);
+			$display("%d:%d",n,dut.DMEM.mem_core[n]);
 		#20ns $stop;
 	end
 

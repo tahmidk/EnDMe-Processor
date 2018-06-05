@@ -1,7 +1,7 @@
 # [Usage:]
-# python assembler.py [input assembly code (.txt)] [output machine code (.txt)]
+# python assembler.py [input assembly code (.txt)]
 # [Example:]
-# python assembler.py program_9.txt machine_code.txt
+# python assembler.py assembly_prog9.txt
 
 # [Description:]
 # Assembler for the EnDMe ISA
@@ -21,15 +21,16 @@
 #				...
 #	2) Put comments on separate lines from instructions
 #		Good - 	instruction 1
-#				// comment
+#				# comment
 #				instruction 2
 #		----------------------------------------------
-#		Bad -	instruction	1	// comment
+#		Bad -	instruction	1	# comment
 #				instruction 2
 # 	3) Precede registers with '$'
 #	4) Precede immediates with '#'
 
 import sys
+import os
 
 M_TYPE = '1'
 O_TYPE = '0'
@@ -75,21 +76,21 @@ reg_code = {
 # Data structures
 instr_mc = ""		# Instruction machine code
 DONE_SIGNAL = "@@@"	# Dedicted special symbol indicating end of program
+OUTPUT_PATH = "./Project/simulation/modelsim/machine_code.bin"
 
 instructions = []	# A list of all the instructions
 labels = dict()		# A dict mapping all labels to the instr # after them
 
 # Script
 # Check that both command line arguments for input and output.txt are given
-if not len(sys.argv) == 4:
-	print("Expected 3 argument (assembly file) but got %d" \
+if not len(sys.argv) == 2:
+	print("Expected 1 argument (assembly file) but got %d" \
 		% (len(sys.argv) - 1))
 else:
 	# Initialize input and output files
 	assembly_in = open(sys.argv[1], 'r')
-	machine_code_out = open(sys.argv[2], 'w')
-	# Used to see decompiled op_code
-	assembly_code_out = open(sys.argv[3], 'w')
+	machine_code_out = open(OUTPUT_PATH, 'w')
+
 	# Fetch all instructions and labels and initialize the instructions and
 	# labels data structures
 	for line in assembly_in:
@@ -124,8 +125,8 @@ else:
 					print("Warning, an immediate reaches >255!")
 
 				instr_mc = M_TYPE + '{0:08b}'.format(imm % 256)
-				machine_code_out.write(instr_mc + '\n')
-				assembly_code_out.write('save ' + '#' + str(imm) + '\n')
+				machine_code_out.write("{:<15}".format(instr_mc) + \
+					"// " + ' '.join(instr) + '\n')
 			# Argument is a label
 			else:
 				label = instr[1]
@@ -135,8 +136,8 @@ else:
 
 				label_ref = labels[label]
 				instr_mc = M_TYPE + '{0:08b}'.format(label_ref % 256)
-				machine_code_out.write(instr_mc + '\n')
-				assembly_code_out.write('save ' + '#' + str(label_ref) + '\n')
+				machine_code_out.write("{:<15}".format(instr_mc) + \
+					"// " + ' '.join(instr) + ' (' + str(label_ref) + ')\n')
 
 		# Detect O-type instruction
 		elif instr[0] in op_code:
@@ -155,17 +156,17 @@ else:
 			# O-Type = Typ[9:8] + Opcode[7:4] + Regcode[3:0]
 			instr_mc = O_TYPE + '{0:04b}'.format(op) + \
 				'{0:04b}'.format(reg)
-			machine_code_out.write(instr_mc + '\n')
-			if len(instr) == 2:
-				assembly_code_out.write(instr[0] + ' ' + str(instr[1]) + '\n')
-			else:
-				assembly_code_out.write(instr[0] + ' ' + '\n')
+			machine_code_out.write("{:<15}".format(instr_mc) + \
+				"// " + ' '.join(instr) + '\n')
 
 		# Detect end of program
 		elif instr[0] == DONE_SIGNAL:
-			machine_code_out.write('011111111')
-			assembly_code_out.write('==DONE==')
+			machine_code_out.write('011111111      // Done\n')
+	
 	# Close files
 	assembly_in.close()
 	machine_code_out.close()
-	assembly_code_out.close()
+
+# Finally display the machine code file
+os.system("cat -n " + OUTPUT_PATH)
+print("\n [SUCCESS] Binary machine code file made in the /modelsim folder")

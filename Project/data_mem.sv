@@ -25,21 +25,21 @@ module data_mem (
 );			 
 
 	// The memory file itself, a list of 2^8 memory slots
-	reg [7:0] mem_file [2**8];
+	reg [7:0] mem_core [2**8];
 
 	// Initialization memory, seed with constants
 	initial 
-		$readmemh("mem_init.dat", mem_file);
+		$readmemh("mem_init.dat", mem_core);
 	
 	// Read data from memory immediately
 	always @* begin
-		data_out = mem_file[addr_in];
+		data_out = mem_core[addr_in];
 	end
 
 	// Write data to memory sequentially
 	always_ff @(posedge CLK) begin
 		if(writemem_ctrl)
-			mem_file[addr_in] <= data_in;
+			mem_core[addr_in] <= data_in;
 	end
 
 endmodule

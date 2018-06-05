@@ -28,16 +28,16 @@ module reg_file(
 );
 
 	// The register file itself, an array of 16 8-bit registers
-	logic [7:0] core[16];
+	logic [7:0] reg_core[16];
 	
 	// Register file writes on posedge CLK iff write_ctrl = 1
 	always_ff @(posedge CLK) 
 		if(write_ctrl)		
-			core[reg_in] <= data_in;
+			reg_core[reg_in] <= data_in;
 
 	// Do reads automatically rather than sequentially
-	assign data_out = core[reg_in];
-	assign dst_out = core[15];
+	assign data_out = reg_core[reg_in];
+	assign dst_out = reg_core[15];
 
 endmodule
 
@@ -105,9 +105,9 @@ module tb_reg_file();
 		write <= 1'b0;
 		
 		// Print contents of reg file at the end
-		$display("Reg Core:");
+		$display("Reg reg_core:");
 		for (i=0; i < 16; i=i+1)
-			$display("%d:%d",i,RF.core[i]);
+			$display("%d:%d",i,RF.reg_core[i]);
 		
 		#20 $stop;
 	end
