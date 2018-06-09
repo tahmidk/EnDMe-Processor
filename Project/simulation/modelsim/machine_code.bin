@@ -151,12 +151,15 @@
 100001000      // save #8
 011000101      // cmp $r5
 001000000      // btr
-101110011      // save reload (115)
+101111111      // save check_space (127)
 000001111      // store $dst
 001010000      // jmp
-110100001      // save done_find_tap_and_seed (161)
+110100100      // save done_find_tap_and_seed (164)
 000001111      // store $dst
 100000001      // save #1
 011000111      // cmp $r7
 001000000      // btr
+101110011      // save reload (115)
+000001111      // store $dst
+001010000      // jmp
 011111111      // ========[ Done ]========
