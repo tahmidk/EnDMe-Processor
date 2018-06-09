@@ -261,6 +261,11 @@ save #8
 cmp $r5
 btr
 
+# else, jump to reload and prepare for next iteration
+save reload
+store $dst
+jmp
+
 done2:
 save done_find_tap_and_seed
 store $dst
@@ -268,10 +273,7 @@ save #1
 cmp $r7
 btr
 
-# else, jump to reload and prepare for next iteration
-save reload
-store $dst
-jmp
+
 
 done_find_tap_and_seed:
 @@@
