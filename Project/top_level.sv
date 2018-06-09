@@ -10,7 +10,7 @@
  *
  *	[Input]
  *		CLK		the clock (1-bit)
- *		RESET		the control wire that resets pc to 0 if high (1-bit)
+ *		init		the control wire that indicates shift to next state (1-bit)
  *
  *	[Output]
  *		done		expressed when PC reaches end of program 1 or 2/3
@@ -20,7 +20,7 @@ import definitions::*;
  
 module top_level(
 	input CLK,
-	input RESET,
+	input init,
 	output reg done
 );
  
@@ -42,6 +42,7 @@ module top_level(
 	assign op = instruction[7:4];
 	
 	// Control wires
+	reg ctrl_reset;
 	wire ctrl_branch;
 	wire ctrl_jump;
 	wire ctrl_zero;
@@ -51,16 +52,32 @@ module top_level(
 	wire ctrl_accWr;
 	wire [2:0] ctrl_alu;
 	
-	// Done flag
+	// State indicator 
+	// State 0: Run Program 1
+	// State 1: Run Program 2
+	// State 2: Run Program 1
+	// State 3: Run Program 3
+	reg [1:0] state = 2'b11;
+	
+	// Initializations
 	initial done <= 0;
+	initial ctrl_reset <= 0;
+	
+	// Increment state when given init signal
+	always @(posedge init) begin
+		state <= state + 1;
+		#5 ctrl_reset <= 1;
+		#10 ctrl_reset <= 0;
+	end
  
 	// Initialize instruction fetch
 	wire accRslt;
 	assign accRslt = (acc_output == 1);
 	instr_fetch IF(
 		.CLK(CLK),
+		.reset_ctrl(ctrl_reset),
 		.dst_in(dst_data),
-		.reset_ctrl(RESET),
+		.state_ctrl(state),
 		.br_ctrl(ctrl_branch),
 		.jmp_ctrl(ctrl_jump),
 		.accdata_in(accRslt),
@@ -133,7 +150,7 @@ endmodule
 module tb_top_basic();
 
 	reg CLK;
-	reg RESET;
+	reg init;
 	wire done;
 	
 	integer i;
@@ -141,7 +158,7 @@ module tb_top_basic();
 	always #10 CLK = ~CLK;
 	initial begin
 		CLK <= 0;
-		RESET <= 0;
+		init <= 0;
 		
 		// Let it run until it's done
 		wait(done);
@@ -162,7 +179,7 @@ module tb_top_basic();
 	// Initialize top level module
 	top_level TOP(
 		.CLK(CLK),
-		.RESET(RESET),
+		.init(init),
 		.done(done)
 	);
 
@@ -236,7 +253,7 @@ module tb_top();
 
 	top_level dut(
 	 .CLK(clk),
-	 .RESET(init),
+	 .init(init),
 	 .done(done)
 	);
 

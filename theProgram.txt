@@ -341,3 +341,6 @@ save decipher
 store $dst
 jmp
 done3:
+
+# Express done signal
+@@@

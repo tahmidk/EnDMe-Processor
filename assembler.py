@@ -161,7 +161,7 @@ else:
 
 		# Detect end of program
 		elif instr[0] == DONE_SIGNAL:
-			machine_code_out.write('011111111      // Done\n')
+			machine_code_out.write('011111111      // ========[ Done ]========\n')
 	
 	# Close files
 	assembly_in.close()

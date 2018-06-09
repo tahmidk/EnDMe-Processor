@@ -7,7 +7,7 @@
  *	[Inputs]
  * 	CLK			the clock (1-bit)
  *		dst_in		wire accepting $dst register data (8-bits)
- *		reset_ctrl	the control wire that resets pc to 0 if high (1-bit)
+ *		state_ctrl	the control wire determining state of processor (2-bits)
  *		br_ctrl		the control wire determining control flow (btr) (1-bit)
  *		jmp_ctrl		the control wire determining control flow (jmp) (1-bit)
  *		accdata_in	the data currently in the accumulator (== 1 or not) (1-bit)
@@ -19,8 +19,9 @@
 
 module instr_fetch(
 	input CLK,
-	input [7:0] dst_in,
 	input reset_ctrl,
+	input [7:0] dst_in,
+	input [1:0] state_ctrl,
 	input br_ctrl,
 	input jmp_ctrl,
 	input accdata_in,
@@ -38,7 +39,8 @@ module instr_fetch(
 	assign br_sel = (br_ctrl & (^accdata_in === 1'bx ? 0 : accdata_in)) | jmp_ctrl;
 	pc PC(
 		.CLK(CLK), 
-		.reset_ctrl(reset_ctrl),
+		.reset(reset_ctrl),
+		.state(state_ctrl),
 		.pcnext_in(pc_inc),
 		.pcbr_in(pc_br),
 		.br_ctrl(br_sel),
@@ -61,6 +63,7 @@ module tb_instr_fetch();
 	reg [7:0] dst_in;
 	// Controls
 	reg reset_ctrl;
+	reg [1:0] state_ctrl;
 	reg br_ctrl;
 	reg jmp_ctrl;
 	reg accdata_in;
@@ -69,8 +72,9 @@ module tb_instr_fetch();
 	
 	instr_fetch IF(
 		.CLK(CLK),
-		.dst_in(dst_in),
 		.reset_ctrl(reset_ctrl),
+		.dst_in(dst_in),
+		.state_ctrl(state_ctrl),
 		.br_ctrl(br_ctrl),
 		.jmp_ctrl(jmp_ctrl),
 		.accdata_in(accdata_in),
@@ -81,8 +85,9 @@ module tb_instr_fetch();
 	
 	initial begin
 		CLK <= 0;
-		dst_in <= 0;
 		reset_ctrl <= 0;
+		dst_in <= 0;
+		state_ctrl <= 0;
 		br_ctrl <= 0;
 		jmp_ctrl <= 0;
 		accdata_in <= 1;
