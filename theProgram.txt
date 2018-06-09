@@ -364,10 +364,11 @@ save #1
 add $r7
 store $r7
 
-save #127
-cmp $r7
 save done3
 store $dst
+
+save #127
+cmp $r7
 btr
 
 save decipher
