@@ -206,15 +206,15 @@ reload:
 put $r3
 store $r0
 
-# Move r1 to next
-lb $r4
-store $r1
-
 #increment r4 and Refresh r7
 save #1
 store $r7
 add $r4
 store $r4
+
+# Move r1 to next tap pattern
+lb $r4
+store $r1
 
 
 # Refresh r5
@@ -277,7 +277,7 @@ jmp
 done_find_tap_and_seed:
 
 # r0 = working register (variable), the thing we need for every iteration(states for LFSR)
-# r1 = tap pattern (fixed for a given message)
+# r1 = tap pattern (fixed for a given message) (should be fixed at this point)
 #   	  legitimate (hex) values are: e1, d4, c6, b8,
 #                                     b4, b2, fa, f3
 # r2 = parity computation (variable)
@@ -285,16 +285,19 @@ done_find_tap_and_seed:
 # r5 = state counter -- should hit 2**N-1 for N taps, used to indicate the location to read, initially 0
 # r6 = indicate the index of memory space to write to, start from 0
 # r7 = state counter for where to read, start from 64
-# r8 = indicate whether begin to write to, initially 0
+# r8 = indicate whether begin to write to, initially 0, it should be a bool(0 or 1)
 
-put $r4
-store $r1
+# set r0 to r3
 put $r3
 store $r0
+
+#set r5,r6,r8 to 0
 save #0
 store $r5
 store $r6
 store $r8
+
+#set state counter
 save #64
 store $r7
 # end of initiallization
@@ -303,10 +306,10 @@ store $r7
 decipher:
 # start of reading and writting
 # see if r8 is set(begin to write to memory), if so perform decode a char
-save #1
-cmp $r8
 save decoding
 store $dst
+save #1
+cmp $r8
 btr
 
 #else decipher a char and see if it is space, if so jump to lfsr, else perform decode a char
