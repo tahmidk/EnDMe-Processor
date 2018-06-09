@@ -178,35 +178,53 @@ done:
 # r1 = tap pattern (fixed for a given message)
 #   	  legitimate (hex) values are: e1, d4, c6, b8,
 #                                     b4, b2, fa, f3
-# r2 = parity computation (variable)
+# r2 = parity computation (variable), used in lfsr only
 # r3 = seed (fixed by first line of program)
 # r4 = pattern counter, indicating which pattern we are testing, start from 128(where the first pattern is stored)
 # r5 = state counter, = 0 in the begining
 # r6 = a counter to keep track of index of memory location, initially 64
 # r7 = exit code, if 1 means all good
 
-# get the seed and store at r3 and r0
+# get seed
 save #64
-store $r0
-lb $r0
-store $r1
+store $r8
+lb $r8
+#r8 = MEM[64]
+store $r8
 save #32
-xor $r1
+xor $r8
 store $r3
+
+
+save #127
+store $r4
+
+reload:
+# reset/increment value (r0 = r3, r1, r4,r5,r6,r7)
+
+# Refresh r0
+put $r3
 store $r0
 
-#initialize r4,r5,r6 and r7
-save #128
-store $r4
+# Move r1 to next
 lb $r4
 store $r1
 
-save #0
-lb $r5
-save #64
-lb $r6
+#increment r4 and Refresh r7
 save #1
 store $r7
+add $r4
+store $r4
+
+
+# Refresh r5
+save #0
+store $r5
+
+#reset r6
+save #64
+store $r6
+
 
 #perform check space, which taks a space and xor it with tap pattern, and see if it is the character at MEM[r6]
 check_space:
@@ -215,9 +233,11 @@ store $r13
 
 save lfsr
 store $dst
+lb $r6
+store $r8
 save #32
 xor $r0
-cmp $r6
+cmp $r8
 btr
 
 save #0
@@ -249,12 +269,11 @@ save #1
 cmp $r7
 btr
 
-save #1
-add $r4
-store $r4
-save check_space
+# else, jump to reload and prepare for next iteration
+save reload
 store $dst
 jmp
+
 done_find_tap_and_seed:
 
 # r0 = working register (variable), the thing we need for every iteration(states for LFSR)
