@@ -53,10 +53,10 @@ module top_level(
 	wire [2:0] ctrl_alu;
 	
 	// State indicator 
-	// State 0: Run Program 1
-	// State 1: Run Program 2
-	// State 2: Run Program 1
-	// State 3: Run Program 3
+	// State 0: Run Program 1 <---
+	// State 1: Run Program 2     |
+	// State 2: Run Program 1	   |
+	// State 3: Run Program 3 ----
 	reg [1:0] state = 2'b11;
 	
 	// Initializations
@@ -69,7 +69,8 @@ module top_level(
 		#5 ctrl_reset <= 1;
 		#10 ctrl_reset <= 0;
 	end
- 
+	
+	// ==============[ Connect all the modules ]===============
 	// Initialize instruction fetch
 	wire accRslt;
 	assign accRslt = (acc_output == 1);
@@ -216,10 +217,14 @@ module tb_top();
 					
 	// our original American Standard Code for Information Interchange message follows
 	// note in practice your design should be able to handle ANY ASCII string
-	string     str1  = "Mr. Watson, come here. I want to see you.";  // 1st program 1 input
-	string     str2  = "Knowledge comes, but wisdom lingers.     ";  // program 2 output
-	string     str3  = "  01234546789abcdefghijklmnopqrstuvwxyz. ";  // 2nd program 1 input
-	string     str4  = "  f       A joke is a very serious thing.";  // program 3 output
+	//string     str1  = "Mr. Watson, come here. I want to see you.";  // 1st program 1 input
+	//string     str2  = "Knowledge comes, but wisdom lingers.     ";  // program 2 output
+	//string     str3  = "  01234546789abcdefghijklmnopqrstuvwxyz. ";  // 2nd program 1 input
+	//string     str4  = "  f       A joke is a very serious thing.";  // program 3 output
+	string     str1  = "What is the meaning of life I ask?       ";  // 1st program 1 input
+	string     str2  = "To be, or not to be, that is the question";  // program 2 output
+	string     str3  = "           djakfa a sd fad ads sdf       ";  // 2nd program 1 input
+	string     str4  = "          A joke is a very serious thing.";  // program 3 output
 
 	// displayed encrypted string will go here:
 	string     str_enc1[64];  // first program 1 output
@@ -244,11 +249,16 @@ module tb_top();
 	assign LFSR_init[3] = $random | 8'h08;  // for program 3 run
 
 	// set preamble lengths for the four program runs (always > 8)
-	assign pre_length[0] = 9 ;  // 1st program 1 run
-	assign pre_length[1] = 9 ;  // program 2 run
-	assign pre_length[2] = 11;  // 2nd program 1 run
-	assign pre_length[3] = 10;  // program 3 run
-
+	//assign pre_length[0] = 9 ;  // 1st program 1 run
+	//assign pre_length[1] = 9 ;  // program 2 run
+	//assign pre_length[2] = 11;  // 2nd program 1 run
+	//assign pre_length[3] = 10;  // program 3 run
+	assign pre_length[0] = 12 ;  // 1st program 1 run
+	assign pre_length[1] = 12 ;  // program 2 run
+	assign pre_length[2] = 10;  // 2nd program 1 run
+	assign pre_length[3] = 9;  // program 3 run
+	
+	
 	int lk;                     // counts leading spaces for program 3
 
 	top_level dut(
@@ -389,29 +399,6 @@ module tb_top();
 		for(int jj=0; jj<64; jj++)
 			$write("%s",str_enc4[jj]);
 		$display("\n");
-		
-		/*
-		// --------------------------Run Program 2--------------------------
-		init = 1;                          // activate reset
-		for(int n=64; n<128; n++)
-			dut.DMEM.mem_core[n] = msg_crypto2[n - 64];
-		// load new constants into data_mem for program 2 here
-		#20ns init = 0;
-		#60ns;						// wait for 6 clock cycles of nominal 10ns each
-		wait(done);					// wait for DUT's done flag to go high
-		#10ns $display();
-		$display("program 2:");
-		
-		// ***** reads your results and compares to test bench
-		// ***** use your instance name for data memory and its internal core *****
-		for(int n=0; n<41; n++)
-			if(str2[n]!=dut.DMEM.mem_core[n])
-				$display("%d bench msg: %s  %h dut msg: %h  OOPS!",
-					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
-			else
-				$display("%d bench msg: %s  %h dut msg: %h",
-					n, str2[n], str2[n], dut.DMEM.mem_core[n]);
-		*/
 
 		
 		// --------------------------Run Program 1--------------------------
@@ -520,7 +507,7 @@ module tb_top();
 					n, str4[n+lk], str4[n+lk], dut.DMEM.mem_core[n]);
 		
 		
-		
+		/*
 		// Print contents of the register file
 		$display("[Post] Reg Data:");
 		for (int n=0; n < 16; n=n+1)
@@ -530,6 +517,7 @@ module tb_top();
 		$display("[Post] Memory File:");
 		for(int n=0; n < 2**8; n=n+1)
 			$display("%d:%d",n,dut.DMEM.mem_core[n]);
+		*/
 		#20ns $stop;
 	end
 
