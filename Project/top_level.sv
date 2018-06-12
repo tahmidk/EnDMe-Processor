@@ -224,7 +224,7 @@ module tb_top();
 	string     str1  = "What is the meaning of life I ask?       ";  // 1st program 1 input
 	string     str2  = "To be, or not to be, that is the question";  // program 2 output
 	string     str3  = "           djakfa a sd fad ads sdf       ";  // 2nd program 1 input
-	string     str4  = "          A joke is a very serious thing.";  // program 3 output
+	string     str4  = "                  Ajoke";  // program 3 output
 
 	// displayed encrypted string will go here:
 	string     str_enc1[64];  // first program 1 output
@@ -337,7 +337,7 @@ module tb_top();
 		$display("\n");
 
 		// program 1 -- precompute encrypted message
-		lfsr_ptrn[2] = LFSR_ptrn[5];  // select one of 8 permitted
+		lfsr_ptrn[2] = LFSR_ptrn[7];  // select one of 8 permitted
 		lfsr3[0]     = LFSR_init[2];  // any nonzero value (zero may be helpful for debug)
 		$display("run program 1 for the second time");
 		$display("%s",str3);          // print original message in transcript window
